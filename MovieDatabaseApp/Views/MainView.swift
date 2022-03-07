@@ -14,19 +14,30 @@ class MainView: UIView {
     weak var delegate: MainViewControllerDelegate?
     
     // MARK: - Private Properties
-    
+
     private var table: UITableView = UITableView()
     private var sampleData = ["Eenie", "Mini","Mini", "Mo"]
     private var dataSource: TableDataSource?
     private var tableDelegate: TableViewDelegate?
-    
+    private lazy var titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textColor = .systemBlue
+        let attributes: [NSAttributedString.Key: Any] = [ NSAttributedString.Key.kern: 2]
+        titleLabel.attributedText = NSAttributedString(string: "Movie Database \u{1F3A5}", attributes: attributes)
+        titleLabel.textAlignment = .center
+        
+        titleLabel.font = UIFont (name: "Helvetica Neue", size: 30)
+        
+        return titleLabel
+    }()
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20.0
         stack.alignment = .fill
-        stack.distribution = .fillEqually
-        [self.table].forEach { stack.addArrangedSubview($0) }
+        stack.distribution = .fill
+        [self.titleLabel,
+         self.table].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
     
@@ -64,10 +75,19 @@ class MainView: UIView {
     
     private func setUpConstraints() {
         
-        stackView.setSize(width: 400, height: 200)
-        stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
+        stackView.setSize(width: 400, height: 500)
+       // stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
 
-
+        stackView.anchor(top: layoutMarginsGuide.topAnchor,
+                         paddingTop: 10,
+                         bottom: layoutMarginsGuide.bottomAnchor,
+                         paddingBottom: 10,
+                         left: layoutMarginsGuide.leadingAnchor,
+                         paddingLeft: 5,
+                         right: layoutMarginsGuide.trailingAnchor,
+                         paddingRight: 2,
+                         width: 0,
+                         height: 0)
     }
 }
 
