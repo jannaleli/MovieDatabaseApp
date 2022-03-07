@@ -18,6 +18,25 @@
 		1077217227D2B97D005B63F5 /* MovieDatabaseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1077217127D2B97D005B63F5 /* MovieDatabaseAppUITestsLaunchTests.swift */; };
 		10E4570B27D2CA64006507EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E4570A27D2CA64006507EF /* GoogleService-Info.plist */; };
 		6488768A0BCCD6A376EC7370 /* Pods_MovieDatabaseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E0C2805874CC4543BAF0D3D /* Pods_MovieDatabaseAppTests.framework */; };
+		AB6C744327D507F70089105D /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C744227D507F70089105D /* AutoLayout.swift */; };
+		AB6C744627D522790089105D /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C744527D522790089105D /* StackView.swift */; };
+		ABA7D8A227D39BF900B39566 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8A127D39BF900B39566 /* MainViewController.swift */; };
+		ABA7D8A427D39C2100B39566 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8A327D39C2100B39566 /* LoginViewController.swift */; };
+		ABA7D8A627D39C5700B39566 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8A527D39C5700B39566 /* RegisterViewController.swift */; };
+		ABA7D8A827D39C6A00B39566 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8A727D39C6A00B39566 /* SplashViewController.swift */; };
+		ABA7D8AA27D39C7300B39566 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8A927D39C7300B39566 /* SplashView.swift */; };
+		ABA7D8AC27D39C7C00B39566 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8AB27D39C7C00B39566 /* MainView.swift */; };
+		ABA7D8AE27D39C8700B39566 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8AD27D39C8700B39566 /* LoginView.swift */; };
+		ABA7D8B027D39C9300B39566 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8AF27D39C9300B39566 /* RegisterView.swift */; };
+		ABA7D8B227D3A38A00B39566 /* Coodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8B127D3A38A00B39566 /* Coodinator.swift */; };
+		ABA7D8B427D3A3FB00B39566 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8B327D3A3FB00B39566 /* SplashCoordinator.swift */; };
+		ABA7D8B627D3A40700B39566 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8B527D3A40700B39566 /* LoginCoordinator.swift */; };
+		ABA7D8B827D3A41100B39566 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8B727D3A41100B39566 /* RegisterCoordinator.swift */; };
+		ABA7D8BA27D3A42900B39566 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8B927D3A42900B39566 /* MainCoordinator.swift */; };
+		ABA7D8BC27D3A51800B39566 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA7D8BB27D3A51800B39566 /* Button.swift */; };
+		ABA958F927D3F9DE00E8A45D /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA958F827D3F9DE00E8A45D /* TableDataSource.swift */; };
+		ABA958FB27D3F9FD00E8A45D /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA958FA27D3F9FD00E8A45D /* TableDelegate.swift */; };
+		ABA958FD27D3FD3000E8A45D /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA958FC27D3FD3000E8A45D /* Table.swift */; };
 		B05B8ED398EEA90CECB3FE36 /* Pods_MovieDatabaseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F1C277D074B65E84FC276B /* Pods_MovieDatabaseApp.framework */; };
 		EC41A8FF4115C3E302147A9B /* Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 626DD555D2A6B8CAA621832F /* Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +77,25 @@
 		46F1C277D074B65E84FC276B /* Pods_MovieDatabaseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		626DD555D2A6B8CAA621832F /* Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D13732CB8A641D9D914E49 /* Pods-MovieDatabaseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieDatabaseApp.debug.xcconfig"; path = "Target Support Files/Pods-MovieDatabaseApp/Pods-MovieDatabaseApp.debug.xcconfig"; sourceTree = "<group>"; };
+		AB6C744227D507F70089105D /* AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
+		AB6C744527D522790089105D /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		ABA7D8A127D39BF900B39566 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		ABA7D8A327D39C2100B39566 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		ABA7D8A527D39C5700B39566 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		ABA7D8A727D39C6A00B39566 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		ABA7D8A927D39C7300B39566 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		ABA7D8AB27D39C7C00B39566 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		ABA7D8AD27D39C8700B39566 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		ABA7D8AF27D39C9300B39566 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		ABA7D8B127D3A38A00B39566 /* Coodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coodinator.swift; sourceTree = "<group>"; };
+		ABA7D8B327D3A3FB00B39566 /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		ABA7D8B527D3A40700B39566 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		ABA7D8B727D3A41100B39566 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
+		ABA7D8B927D3A42900B39566 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		ABA7D8BB27D3A51800B39566 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		ABA958F827D3F9DE00E8A45D /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
+		ABA958FA27D3F9FD00E8A45D /* TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
+		ABA958FC27D3FD3000E8A45D /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		AF4C0E266090E4543EDB302C /* Pods-MovieDatabaseAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieDatabaseAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieDatabaseAppTests/Pods-MovieDatabaseAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		B2982165A381FFE4CC59DF38 /* Pods-MovieDatabaseApp-MovieDatabaseAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieDatabaseApp-MovieDatabaseAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-MovieDatabaseApp-MovieDatabaseAppUITests/Pods-MovieDatabaseApp-MovieDatabaseAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C0DEC7BFC257D6E15A0F6AEF /* Pods-MovieDatabaseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieDatabaseApp.release.xcconfig"; path = "Target Support Files/Pods-MovieDatabaseApp/Pods-MovieDatabaseApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,11 +156,16 @@
 		1077214D27D2B97B005B63F5 /* MovieDatabaseApp */ = {
 			isa = PBXGroup;
 			children = (
+				AB6C744127D507EB0089105D /* Utils */,
+				ABA7D89E27D3947000B39566 /* ViewControllers */,
+				ABA7D89B27D3943500B39566 /* Coordinators */,
+				ABA7D89A27D3942700B39566 /* Views */,
+				ABA7D89927D3941F00B39566 /* Components */,
 				10E4570A27D2CA64006507EF /* GoogleService-Info.plist */,
 				1077214E27D2B97B005B63F5 /* AppDelegate.swift */,
 				1077215027D2B97B005B63F5 /* SceneDelegate.swift */,
-				1077215227D2B97B005B63F5 /* ViewController.swift */,
 				1077215427D2B97B005B63F5 /* Main.storyboard */,
+				1077215227D2B97B005B63F5 /* ViewController.swift */,
 				1077215727D2B97C005B63F5 /* Assets.xcassets */,
 				1077215927D2B97C005B63F5 /* LaunchScreen.storyboard */,
 				1077215C27D2B97C005B63F5 /* Info.plist */,
@@ -147,6 +190,84 @@
 			path = MovieDatabaseAppUITests;
 			sourceTree = "<group>";
 		};
+		AB6C744127D507EB0089105D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C744227D507F70089105D /* AutoLayout.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AB6C744427D5225F0089105D /* Stack View */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C744527D522790089105D /* StackView.swift */,
+			);
+			path = "Stack View";
+			sourceTree = "<group>";
+		};
+		ABA7D89927D3941F00B39566 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C744427D5225F0089105D /* Stack View */,
+				ABA7D89D27D3944D00B39566 /* Table */,
+				ABA7D89C27D3944600B39566 /* Buttons */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		ABA7D89A27D3942700B39566 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ABA7D8A927D39C7300B39566 /* SplashView.swift */,
+				ABA7D8AB27D39C7C00B39566 /* MainView.swift */,
+				ABA7D8AD27D39C8700B39566 /* LoginView.swift */,
+				ABA7D8AF27D39C9300B39566 /* RegisterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ABA7D89B27D3943500B39566 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				ABA7D8B127D3A38A00B39566 /* Coodinator.swift */,
+				ABA7D8B327D3A3FB00B39566 /* SplashCoordinator.swift */,
+				ABA7D8B527D3A40700B39566 /* LoginCoordinator.swift */,
+				ABA7D8B727D3A41100B39566 /* RegisterCoordinator.swift */,
+				ABA7D8B927D3A42900B39566 /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		ABA7D89C27D3944600B39566 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				ABA7D8BB27D3A51800B39566 /* Button.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		ABA7D89D27D3944D00B39566 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				ABA958F827D3F9DE00E8A45D /* TableDataSource.swift */,
+				ABA958FA27D3F9FD00E8A45D /* TableDelegate.swift */,
+				ABA958FC27D3FD3000E8A45D /* Table.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		ABA7D89E27D3947000B39566 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ABA7D8A127D39BF900B39566 /* MainViewController.swift */,
+				ABA7D8A327D39C2100B39566 /* LoginViewController.swift */,
+				ABA7D8A527D39C5700B39566 /* RegisterViewController.swift */,
+				ABA7D8A727D39C6A00B39566 /* SplashViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		B70493A6CB54EEED91C33EB7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,7 +278,6 @@
 				C98D4AE4AA6DAFAAAAF831A9 /* Pods-MovieDatabaseAppTests.debug.xcconfig */,
 				AF4C0E266090E4543EDB302C /* Pods-MovieDatabaseAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -411,9 +531,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA7D8B027D39C9300B39566 /* RegisterView.swift in Sources */,
+				AB6C744627D522790089105D /* StackView.swift in Sources */,
 				1077215327D2B97B005B63F5 /* ViewController.swift in Sources */,
+				ABA7D8B627D3A40700B39566 /* LoginCoordinator.swift in Sources */,
+				ABA958FB27D3F9FD00E8A45D /* TableDelegate.swift in Sources */,
+				ABA7D8B427D3A3FB00B39566 /* SplashCoordinator.swift in Sources */,
+				ABA7D8AC27D39C7C00B39566 /* MainView.swift in Sources */,
+				ABA958FD27D3FD3000E8A45D /* Table.swift in Sources */,
+				ABA7D8AA27D39C7300B39566 /* SplashView.swift in Sources */,
 				1077214F27D2B97B005B63F5 /* AppDelegate.swift in Sources */,
+				ABA958F927D3F9DE00E8A45D /* TableDataSource.swift in Sources */,
+				ABA7D8B227D3A38A00B39566 /* Coodinator.swift in Sources */,
 				1077215127D2B97B005B63F5 /* SceneDelegate.swift in Sources */,
+				ABA7D8BA27D3A42900B39566 /* MainCoordinator.swift in Sources */,
+				ABA7D8A627D39C5700B39566 /* RegisterViewController.swift in Sources */,
+				ABA7D8A427D39C2100B39566 /* LoginViewController.swift in Sources */,
+				AB6C744327D507F70089105D /* AutoLayout.swift in Sources */,
+				ABA7D8A827D39C6A00B39566 /* SplashViewController.swift in Sources */,
+				ABA7D8AE27D39C8700B39566 /* LoginView.swift in Sources */,
+				ABA7D8A227D39BF900B39566 /* MainViewController.swift in Sources */,
+				ABA7D8B827D3A41100B39566 /* RegisterCoordinator.swift in Sources */,
+				ABA7D8BC27D3A51800B39566 /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,12 +732,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VB8JY3R4X5;
+				DEVELOPMENT_TEAM = Z969BXL62D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieDatabaseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -606,7 +744,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = iOSTraining.MovieDatabaseApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "iOSTraining.MovieDatabaseApp-jann";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -622,12 +760,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VB8JY3R4X5;
+				DEVELOPMENT_TEAM = Z969BXL62D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieDatabaseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -635,7 +772,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = iOSTraining.MovieDatabaseApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "iOSTraining.MovieDatabaseApp-jann";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
