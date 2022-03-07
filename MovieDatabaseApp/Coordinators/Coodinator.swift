@@ -9,11 +9,10 @@ import Foundation
 import UIKit
 
 public protocol Coordinator: AnyObject {
-    //MARK: Declaration of protocol properties
+    //MARK: Declaration of base protocol properties
     
     var childCoordinators: [Coordinator] { get set }
-    
-    var navigationController: UINavigationController { get set }
+    //MARK: Declaration of base protocol methods
     
     func start()
 }

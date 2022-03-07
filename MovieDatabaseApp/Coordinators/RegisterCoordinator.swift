@@ -12,25 +12,28 @@ protocol RegisterCoordinatorDelegate: AnyObject {
 }
 
 final class RegisterCoordinator: Coordinator {
+    
+    // MARK: - Public Properties
     var childCoordinators = [Coordinator]()
     
-    var navigationController: UINavigationController
-    
+    weak var navigationController: UINavigationController?
+    // MARK: - Initialization
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+    // MARK: - Public Methods
     func start() {
         let registerViewController: RegisterViewController = RegisterViewController()
         registerViewController.delegate = self
-        self.navigationController.viewControllers = [registerViewController]
+        self.navigationController?.viewControllers = [registerViewController]
     }
     
 }
 
 extension RegisterCoordinator: RegisterCoordinatorDelegate {
     func goToMain() {
-        let mainCoordinator = MainCoordinator(navigationController: self.navigationController)
+        guard let navigationController = self.navigationController else { return }
+        let mainCoordinator = MainCoordinator(navigationController: navigationController)
         //loginCoordinator.delegate = self
         childCoordinators.append(mainCoordinator)
         mainCoordinator.start()

@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITableView {
-
+    // MARK: - Public Methods
     func setSize(width: CGFloat, height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         

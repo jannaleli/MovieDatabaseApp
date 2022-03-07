@@ -13,18 +13,19 @@ protocol MainCoordinatorDelegate: AnyObject {
 }
 
 final class MainCoordinator: Coordinator {
+    // MARK: - Public Properties
     var childCoordinators = [Coordinator]()
     
-    var navigationController: UINavigationController
-    
+    weak var navigationController: UINavigationController?
+    // MARK: - Initialization
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+    // MARK: - Public Methods
     func start() {
         let mainViewController: MainViewController = MainViewController()
         mainViewController.delegate = self
-        self.navigationController.viewControllers = [mainViewController]
+        self.navigationController?.viewControllers = [mainViewController]
     }
 }
 extension MainCoordinator: MainCoordinatorDelegate {

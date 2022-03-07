@@ -14,9 +14,10 @@ public protocol RegisterViewControllerDelegate: AnyObject {
 }
 
 class RegisterViewController: UIViewController {
+    // MARK: - Public Properties
     weak var delegate: RegisterCoordinatorDelegate?
     var registerView = RegisterView()
-    
+    // MARK: - Override
     override func loadView() {
         registerView.delegate = self
         view = registerView

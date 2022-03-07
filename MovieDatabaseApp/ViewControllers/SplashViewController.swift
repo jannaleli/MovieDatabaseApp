@@ -11,11 +11,11 @@ public protocol SplashViewControllerDelegate: AnyObject {
 }
 
 class SplashViewController: UIViewController {
-
+    // MARK: - Public Properties
     
     weak var delegate: SplashCoordinatorDelegate?
     var splashView = SplashView()
-    
+    // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         

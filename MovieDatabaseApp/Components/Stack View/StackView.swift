@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 extension UIStackView {
-
+    // MARK: - Public Methods
     func setSize(width: CGFloat, height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         

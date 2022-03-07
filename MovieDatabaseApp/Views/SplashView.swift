@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CLTypingLabel
 
 protocol SplashViewDelegate: AnyObject {
     func goToLogin(in view: SplashView)
@@ -15,39 +16,61 @@ protocol SplashViewDelegate: AnyObject {
 
 class SplashView: UIView {
 
-    
+    // MARK: - Public Properties
     weak var delegate: SplashViewControllerDelegate?
 
-    lazy var buttonToLogin: UIButton = {
+    // MARK: - Private Properties
+    
+    var titleLabel: CLTypingLabel =  CLTypingLabel()
+    
+    private lazy var buttonToLogin: UIButton = {
         let buttonToLogin = UIButton()
-        buttonToLogin.setTitle("Login", for: .normal)
-        buttonToLogin.backgroundColor = .black
+        var config = buttonToLogin.getConfig()
+        config.title = "Login"
+        config.baseBackgroundColor = .systemBlue
+        config.cornerStyle = .medium
+        config.preferredSymbolConfigurationForImage
+          = UIImage.SymbolConfiguration(scale: .medium)
+        buttonToLogin.setConfig(config: config)
         buttonToLogin.isUserInteractionEnabled = true
-        let loginTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToLoginTapped(sender:)))
-        buttonToLogin.addGestureRecognizer(loginTap)
+        buttonToLogin.addAction(
+          UIAction { _ in
+              self.handleButtonToLoginTapped()
+          }, for: .touchDown
+        )
         return buttonToLogin
     }()
     
-    lazy var buttonToRegister: UIButton = {
+    private lazy var buttonToRegister: UIButton = {
         let buttonToRegister = UIButton()
-        buttonToRegister.backgroundColor = .black
-        buttonToRegister.setTitle("Register", for: .normal)
-        let registerTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToRegisterTapped(sender:)))
-        buttonToRegister.addGestureRecognizer(registerTap)
+        var config = buttonToRegister.getConfig()
+        config.title = "Register"
+        config.baseBackgroundColor = .systemBlue
+        config.cornerStyle = .medium
+
+        buttonToRegister.setConfig(config: config)
+        buttonToRegister.addAction(
+          UIAction { _ in
+              self.handleButtonToRegisterTapped()
+          }, for: .touchDown
+        )
         return buttonToRegister
     }()
     
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .horizontal
+        stack.axis = .vertical
         stack.spacing = 20.0
         stack.alignment = .fill
         stack.distribution = .fillEqually
-        [self.buttonToLogin,
+        [self.titleLabel,
+         self.buttonToLogin,
          self.buttonToRegister
       ].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
+    
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGeneralConfigurations()
@@ -62,30 +85,37 @@ class SplashView: UIView {
         setUpConstraints()
     }
     
-    func setGeneralConfigurations() {
+    // MARK: - Methods
+    
+    private func setGeneralConfigurations() {
         backgroundColor = .white
     }
     
-    func createSubviews() {
+    private func createSubviews() {
 
+        titleLabel.textColor = .systemBlue
+        let attributes: [NSAttributedString.Key: Any] = [ NSAttributedString.Key.kern: 2]
+        titleLabel.attributedText = NSAttributedString(string: "Movie Database \u{1F3A5}", attributes: attributes)
+        titleLabel.textAlignment = .center
+        
+        titleLabel.font = UIFont (name: "Helvetica Neue", size: 30)
         addSubview(stackView)
 
     }
     
-    func setUpConstraints() {
+    private func setUpConstraints() {
         
-
-        buttonToLogin.setSize(width: 100, height: 50)
-        buttonToRegister.setSize(width: 100, height: 50)
-        
+   
+        stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
+        stackView.setSize(width: 400, height: 150)
         stackView.anchor(top: nil,
-                            paddingTop: -19,
-                            bottom: layoutMarginsGuide.bottomAnchor,
-                            paddingBottom: 0,
+                            paddingTop: 10,
+                            bottom: nil,
+                            paddingBottom: 10,
                             left: layoutMarginsGuide.leadingAnchor,
                             paddingLeft: 10,
                             right: layoutMarginsGuide.trailingAnchor,
-                            paddingRight: 0,
+                            paddingRight: 10,
                             width: 0,
                             height: 0)
             
@@ -94,13 +124,13 @@ class SplashView: UIView {
         
       
     }
-    
-    @objc func handleButtonToLoginTapped(sender: UITapGestureRecognizer) {
-      
+    // MARK: - Button Actions
+    @objc func handleButtonToLoginTapped() {
+        
         delegate?.goToLogin()
     }
     
-    @objc func handleButtonToRegisterTapped(sender: UITapGestureRecognizer) {
+    @objc func handleButtonToRegisterTapped() {
       
         delegate?.goToRegister()
     }

@@ -9,13 +9,18 @@ import Foundation
 import UIKit
 
 class MainView: UIView {
-    var delegate: MainViewControllerDelegate?
-    var table: UITableView = UITableView()
-    var sampleData = ["Eenie", "Mini", "Mo"]
-    var dataSource: TableDataSource?
-    var tableDelegate: TableViewDelegate?
     
-    lazy var stackView: UIStackView = {
+    // MARK: - Public Properties
+    weak var delegate: MainViewControllerDelegate?
+    
+    // MARK: - Private Properties
+    
+    private var table: UITableView = UITableView()
+    private var sampleData = ["Eenie", "Mini","Mini", "Mo"]
+    private var dataSource: TableDataSource?
+    private var tableDelegate: TableViewDelegate?
+    
+    private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20.0
@@ -25,7 +30,7 @@ class MainView: UIView {
         return stack
     }()
     
-    
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGeneralConfigurations()
@@ -39,14 +44,12 @@ class MainView: UIView {
         createSubviews()
         setUpConstraints()
     }
-    
-    func setGeneralConfigurations() {
+    // MARK: - Methods
+    private func setGeneralConfigurations() {
         backgroundColor = .white
     }
     
-    func createSubviews() {
-        
-
+    private func createSubviews() {
 
         dataSource = TableDataSource(dataSrc: sampleData)
         tableDelegate = TableViewDelegate()
@@ -59,7 +62,7 @@ class MainView: UIView {
         addSubview(stackView)
     }
     
-    func setUpConstraints() {
+    private func setUpConstraints() {
         
         stackView.setSize(width: 400, height: 200)
         stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)

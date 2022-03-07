@@ -13,28 +13,44 @@ protocol LoginViewDelegate: AnyObject {
 }
 
 class LoginView: UIView {
-    weak var delegate: LoginViewControllerDelegate?
-
-    lazy var buttonToMain: UIButton = {
-        let buttonToMain = UIButton()
-        buttonToMain.setTitle("Login", for: .normal)
-        buttonToMain.backgroundColor = .black
     
+    // MARK: - Public Properties
+    weak var delegate: LoginViewControllerDelegate?
+    // MARK: - Private Properties
+    private lazy var buttonToMain: UIButton = {
+        let buttonToMain = UIButton()
+        var config = buttonToMain.getConfig()
+        config.title = "Login"
+        config.baseBackgroundColor = .systemBlue
+        config.cornerStyle = .large
+        // 1
+        config.image = UIImage(systemName: "chevron.right")
+        // 2
+        config.imagePadding = 5
+        // 3
+        config.imagePlacement = .trailing
+        buttonToMain.setConfig(config: config)
         buttonToMain.isUserInteractionEnabled = true
-        let mainTap = UITapGestureRecognizer(target: self, action: #selector(handleButtonToMainTapped(sender:)))
-        buttonToMain.addGestureRecognizer(mainTap)
+        buttonToMain.addAction(
+          UIAction { _ in
+              self.handleButtonToMainTapped()
+          }, for: .touchDown
+        )
         return buttonToMain
     }()
     
-    lazy var usernameField: UITextField = {
+    private lazy var usernameField: UITextField = {
         let usernameField = UITextField()
+        usernameField.placeholder = "Username"
         usernameField.backgroundColor = .white
         usernameField.borderStyle = .roundedRect
+        
         return usernameField
     }()
     
-    lazy var passwordField: UITextField = {
+    private lazy var passwordField: UITextField = {
         let passwordField = UITextField()
+        passwordField.placeholder = "Password"
         passwordField.backgroundColor = .white
         passwordField.borderStyle = .roundedRect
         passwordField.isSecureTextEntry = true
@@ -42,7 +58,7 @@ class LoginView: UIView {
         return passwordField
     }()
     
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20.0
@@ -54,7 +70,7 @@ class LoginView: UIView {
       ].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
-
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGeneralConfigurations()
@@ -68,45 +84,41 @@ class LoginView: UIView {
         createSubviews()
         setUpConstraints()
     }
-    
-    func setGeneralConfigurations() {
+    // MARK: - Private Methods
+    private func setGeneralConfigurations() {
         backgroundColor = .white
     }
     
-    func createSubviews() {
+    private func createSubviews() {
 
-  
         addSubview(stackView)
-        
     
-        
-        
     }
     
-    func setUpConstraints() {
+    private func setUpConstraints() {
         
 
-        buttonToMain.setSize(width: 100, height: 50)
+        buttonToMain.setSize(width: 100, height: 30)
         stackView.setSize(width: 400, height: 200)
         stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
-//        stackView.anchor(top: layoutMarginsGuide.topAnchor,
-//                         paddingTop: 10,
-//                         bottom: layoutMarginsGuide.bottomAnchor,
-//                         paddingBottom: 10,
-//                         left: layoutMarginsGuide.leadingAnchor,
-//                         paddingLeft: 10,
-//                         right: layoutMarginsGuide.trailingAnchor,
-//                         paddingRight: 10,
-//                         width: 0,
-//                         height: 0)
+        stackView.anchor(top: nil,
+                         paddingTop: 10,
+                         bottom: nil,
+                         paddingBottom: 10,
+                         left: layoutMarginsGuide.leadingAnchor,
+                         paddingLeft: 5,
+                         right: layoutMarginsGuide.trailingAnchor,
+                         paddingRight: 2,
+                         width: 0,
+                         height: 0)
             
 
 
         
       
     }
-    
-    @objc func handleButtonToMainTapped(sender: UITapGestureRecognizer) {
+    // MARK: - Button Actions
+    @objc func handleButtonToMainTapped() {
       
         delegate?.goToMainView()
     }

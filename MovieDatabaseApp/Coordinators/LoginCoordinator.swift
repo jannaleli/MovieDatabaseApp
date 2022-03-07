@@ -13,25 +13,29 @@ protocol LoginCoordinatorDelegate: AnyObject {
 }
 
 final class LoginCoordinator: Coordinator {
+    
+    // MARK: - Public Properties
     var childCoordinators = [Coordinator]()
     
-    var navigationController: UINavigationController
-    
+    weak var navigationController: UINavigationController?
+    // MARK: - Initialization
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+    // MARK: - Public Methods
     func start() {
         let loginViewController: LoginViewController = LoginViewController()
         loginViewController.delegate = self
-        self.navigationController.viewControllers = [loginViewController]
+        self.navigationController?.viewControllers = [loginViewController]
     }
     
 }
 
 extension LoginCoordinator: LoginCoordinatorDelegate {
     func goToMain() {
-        let mainCoordinator = MainCoordinator(navigationController: self.navigationController)
+        
+        guard let navigationController = self.navigationController else { return }
+        let mainCoordinator = MainCoordinator(navigationController: navigationController)
         //loginCoordinator.delegate = self
         childCoordinators.append(mainCoordinator)
         mainCoordinator.start()

@@ -8,6 +8,14 @@
 import Foundation
 import UIKit
 extension UIButton {
+    
+    func getConfig() -> UIButton.Configuration {
+        return UIButton.Configuration.filled()
+    }
+    
+    func setConfig(config: UIButton.Configuration) {
+        configuration = config
+    }
 
     func setSize(width: CGFloat, height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false

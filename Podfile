@@ -6,6 +6,7 @@ target 'MovieDatabaseApp' do
   use_frameworks!
 
   # Pods for MovieDatabaseApp
+  pod 'CLTypingLabel'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   target 'MovieDatabaseAppTests' do
