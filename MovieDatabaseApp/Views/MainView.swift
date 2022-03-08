@@ -9,27 +9,30 @@ import Foundation
 import UIKit
 
 class MainView: UIView {
-    
     // MARK: - Public Properties
+
     weak var delegate: MainViewControllerDelegate?
-    
+
     // MARK: - Private Properties
 
-    private var table: UITableView = UITableView()
-    private var sampleData = ["Eenie", "Mini","Mini", "Mo"]
+    private var sampleData = ["Eenie", "Mini", "Mini", "Mo"]
     private var dataSource: TableDataSource?
     private var tableDelegate: TableViewDelegate?
+
+    private var table: UITableView = .init()
+
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .systemBlue
-        let attributes: [NSAttributedString.Key: Any] = [ NSAttributedString.Key.kern: 2]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.kern: 2]
         titleLabel.attributedText = NSAttributedString(string: "Movie Database \u{1F3A5}", attributes: attributes)
         titleLabel.textAlignment = .center
-        
-        titleLabel.font = UIFont (name: "Helvetica Neue", size: 30)
-        
+
+        titleLabel.font = UIFont(name: "Helvetica Neue", size: 30)
+
         return titleLabel
     }()
+
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -40,43 +43,44 @@ class MainView: UIView {
          self.table].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
-    
+
     // MARK: - Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
+
     // MARK: - Methods
+
     private func setGeneralConfigurations() {
         backgroundColor = .white
     }
-    
-    private func createSubviews() {
 
+    private func createSubviews() {
         dataSource = TableDataSource(dataSrc: sampleData)
         tableDelegate = TableViewDelegate()
-        //self.table.dataSource = TableDataSource(dataSrc: sampleData)
-        //This will generate a warning that your dataSource is weak and thus will be deallocated and your table will never load
-        self.table.dataSource = dataSource
-        self.table.delegate = tableDelegate
-        
+        // self.table.dataSource = TableDataSource(dataSrc: sampleData)
+        // This will generate a warning that your dataSource is weak and thus will be deallocated and your table will never load
+        table.dataSource = dataSource
+        table.delegate = tableDelegate
+
         table.register(UITableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "Cell")
         addSubview(stackView)
     }
-    
+
     private func setUpConstraints() {
-        
         stackView.setSize(width: 400, height: 500)
-       // stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
+        // stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
 
         stackView.anchor(top: layoutMarginsGuide.topAnchor,
                          paddingTop: 10,
@@ -90,5 +94,3 @@ class MainView: UIView {
                          height: 0)
     }
 }
-
-

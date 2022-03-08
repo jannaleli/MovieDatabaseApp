@@ -12,30 +12,39 @@ protocol RegisterCoordinatorDelegate: AnyObject {
 }
 
 final class RegisterCoordinator: Coordinator {
-    
     // MARK: - Public Properties
+
     var childCoordinators = [Coordinator]()
-    
+
     weak var navigationController: UINavigationController?
+
     // MARK: - Initialization
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+
     // MARK: - Public Methods
+
     func start() {
-        let registerViewController: RegisterViewController = RegisterViewController()
+        let registerViewController = RegisterViewController()
         registerViewController.delegate = self
-        self.navigationController?.viewControllers = [registerViewController]
+        navigationController?.viewControllers = [registerViewController]
     }
-    
 }
+
+// MARK: - Register Cpprdomatpr Delegate
 
 extension RegisterCoordinator: RegisterCoordinatorDelegate {
     func goToMain() {
-        guard let navigationController = self.navigationController else { return }
+        guard let navigationController = navigationController else { return }
         let mainCoordinator = MainCoordinator(navigationController: navigationController)
-        //loginCoordinator.delegate = self
+        // loginCoordinator.delegate = self
         childCoordinators.append(mainCoordinator)
         mainCoordinator.start()
     }
 }
+
+// MARK: - Factory
+
+extension LoginCoordinator {}

@@ -13,12 +13,13 @@ public protocol LoginViewControllerDelegate: AnyObject {
 }
 
 class LoginViewController: UIViewController {
-    
     // MARK: - Public Properties
+
     weak var delegate: LoginCoordinatorDelegate?
     var loginView = LoginView()
 
     // MARK: - Override
+
     override func loadView() {
         loginView.delegate = self
         view = loginView

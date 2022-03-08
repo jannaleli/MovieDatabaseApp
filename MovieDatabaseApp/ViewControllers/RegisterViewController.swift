@@ -8,16 +8,18 @@
 import Foundation
 import UIKit
 
-
 public protocol RegisterViewControllerDelegate: AnyObject {
     func goToMainView()
 }
 
 class RegisterViewController: UIViewController {
     // MARK: - Public Properties
+
     weak var delegate: RegisterCoordinatorDelegate?
     var registerView = RegisterView()
+
     // MARK: - Override
+
     override func loadView() {
         registerView.delegate = self
         view = registerView

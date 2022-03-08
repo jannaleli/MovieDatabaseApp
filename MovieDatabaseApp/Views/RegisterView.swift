@@ -7,11 +7,12 @@ protocol RegisterViewDelegate: AnyObject {
 }
 
 class RegisterView: UIView {
-    
     // MARK: - Public Properties
+
     weak var delegate: RegisterViewControllerDelegate?
-    
+
     // MARK: - Private Properties
+
     private lazy var usernameField: UITextField = {
         let usernameField = UITextField()
         usernameField.placeholder = "Username"
@@ -19,7 +20,7 @@ class RegisterView: UIView {
         usernameField.borderStyle = .roundedRect
         return usernameField
     }()
-    
+
     private lazy var passwordField: UITextField = {
         let passwordField = UITextField()
         passwordField.placeholder = "Password"
@@ -29,27 +30,25 @@ class RegisterView: UIView {
 
         return passwordField
     }()
-    
-    private  lazy var firstName: UITextField = {
+
+    private lazy var firstName: UITextField = {
         let firstName = UITextField()
         firstName.placeholder = "First Name"
         firstName.backgroundColor = .white
         firstName.borderStyle = .roundedRect
 
-
         return firstName
     }()
-    
+
     private lazy var lastName: UITextField = {
         let lastName = UITextField()
         lastName.placeholder = "Last Name"
         lastName.backgroundColor = .white
         lastName.borderStyle = .roundedRect
 
-
         return lastName
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -60,12 +59,10 @@ class RegisterView: UIView {
          self.firstName,
          self.lastName,
          self.passwordField,
-         self.buttonToMain
-      ].forEach { stack.addArrangedSubview($0) }
+         self.buttonToMain].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
-    
-    
+
     private lazy var buttonToMain: UIButton = {
         let buttonToMain = UIButton()
         var config = buttonToMain.getConfig()
@@ -81,46 +78,40 @@ class RegisterView: UIView {
         buttonToMain.setConfig(config: config)
         buttonToMain.isUserInteractionEnabled = true
         buttonToMain.addAction(
-          UIAction { _ in
-              self.handleButtonToMainTapped()
-          }, for: .touchDown
+            UIAction { _ in
+                self.handleButtonToMainTapped()
+            }, for: .touchDown
         )
         return buttonToMain
     }()
+
     // MARK: - Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
+
     // MARK: - Private Methods
+
     private func setGeneralConfigurations() {
         backgroundColor = .white
     }
-    
+
     private func createSubviews() {
-
-
         addSubview(stackView)
-        
-        
-    
-        
-        
     }
-    
+
     private func setUpConstraints() {
-        
-
-
         stackView.setSize(width: 400, height: 300)
         stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
         stackView.anchor(top: nil,
@@ -133,15 +124,11 @@ class RegisterView: UIView {
                          paddingRight: 2,
                          width: 0,
                          height: 0)
-
-        
-      
     }
+
     // MARK: - Button Actions
+
     @objc func handleButtonToMainTapped() {
-      
         delegate?.goToMainView()
     }
-    
-  
 }

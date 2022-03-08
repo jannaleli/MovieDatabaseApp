@@ -310,6 +310,7 @@
 			buildConfigurationList = 1077217527D2B97D005B63F5 /* Build configuration list for PBXNativeTarget "MovieDatabaseApp" */;
 			buildPhases = (
 				DA14B5E5D89220994205433C /* [CP] Check Pods Manifest.lock */,
+				101FBF7027D79E8700E44450 /* Run Script */,
 				1077214727D2B97B005B63F5 /* Sources */,
 				1077214827D2B97B005B63F5 /* Frameworks */,
 				1077214927D2B97B005B63F5 /* Resources */,
@@ -435,6 +436,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		101FBF7027D79E8700E44450 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"$SRCROOT\"\n";
+		};
 		26FA4AAC9346B281F5E12E11 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

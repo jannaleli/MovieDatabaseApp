@@ -9,16 +9,19 @@ import Foundation
 import UIKit
 
 // MARK: - Public Protocol
+
 public protocol MainViewControllerDelegate: AnyObject {
     func goToDetailsView()
 }
 
 class MainViewController: UIViewController {
     // MARK: - Public Properties
+
     var delegate: MainCoordinatorDelegate?
     var mainView = MainView()
-    
+
     // MARK: - Override
+
     override func loadView() {
         mainView.delegate = self
         view = mainView
@@ -26,7 +29,6 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainViewControllerDelegate {
-    
     func goToDetailsView() {
         delegate?.goToDetailsView()
     }

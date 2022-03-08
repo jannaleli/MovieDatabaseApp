@@ -9,27 +9,37 @@ import Foundation
 import UIKit
 
 protocol MainCoordinatorDelegate: AnyObject {
-   func goToDetailsView()
+    func goToDetailsView()
 }
 
 final class MainCoordinator: Coordinator {
     // MARK: - Public Properties
+
     var childCoordinators = [Coordinator]()
-    
+
     weak var navigationController: UINavigationController?
+
     // MARK: - Initialization
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+
     // MARK: - Public Methods
+
     func start() {
-        let mainViewController: MainViewController = MainViewController()
+        let mainViewController = MainViewController()
         mainViewController.delegate = self
-        self.navigationController?.viewControllers = [mainViewController]
+        navigationController?.viewControllers = [mainViewController]
     }
 }
+
+// MARK: - Delegate Methods
+
 extension MainCoordinator: MainCoordinatorDelegate {
-    func goToDetailsView() {
-         
-    }
+    func goToDetailsView() {}
 }
+
+// MARK: - Factory
+
+extension MainCoordinator {}

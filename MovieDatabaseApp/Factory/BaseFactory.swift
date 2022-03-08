@@ -11,6 +11,5 @@ import UIKit
 protocol MainFactory {
     func makeViewController(coordinator: MainCoordinator) -> MainViewController
     /* No ViewModel yet */
-    /*func makeViewModel(coordinator: MainCoordinator) -> ViewModel*/
-
+    /* func makeViewModel(coordinator: MainCoordinator) -> ViewModel */
 }

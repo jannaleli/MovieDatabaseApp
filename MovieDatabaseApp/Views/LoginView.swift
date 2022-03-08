@@ -13,10 +13,12 @@ protocol LoginViewDelegate: AnyObject {
 }
 
 class LoginView: UIView {
-    
     // MARK: - Public Properties
+
     weak var delegate: LoginViewControllerDelegate?
+
     // MARK: - Private Properties
+
     private lazy var buttonToMain: UIButton = {
         let buttonToMain = UIButton()
         var config = buttonToMain.getConfig()
@@ -32,22 +34,22 @@ class LoginView: UIView {
         buttonToMain.setConfig(config: config)
         buttonToMain.isUserInteractionEnabled = true
         buttonToMain.addAction(
-          UIAction { _ in
-              self.handleButtonToMainTapped()
-          }, for: .touchDown
+            UIAction { _ in
+                self.handleButtonToMainTapped()
+            }, for: .touchDown
         )
         return buttonToMain
     }()
-    
+
     private lazy var usernameField: UITextField = {
         let usernameField = UITextField()
         usernameField.placeholder = "Username"
         usernameField.backgroundColor = .white
         usernameField.borderStyle = .roundedRect
-        
+
         return usernameField
     }()
-    
+
     private lazy var passwordField: UITextField = {
         let passwordField = UITextField()
         passwordField.placeholder = "Password"
@@ -57,7 +59,7 @@ class LoginView: UIView {
 
         return passwordField
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -66,38 +68,37 @@ class LoginView: UIView {
         stack.distribution = .fillEqually
         [self.usernameField,
          self.passwordField,
-         self.buttonToMain
-      ].forEach { stack.addArrangedSubview($0) }
+         self.buttonToMain].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
+
     // MARK: - Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
     }
+
     // MARK: - Private Methods
+
     private func setGeneralConfigurations() {
         backgroundColor = .white
     }
-    
+
     private func createSubviews() {
-
         addSubview(stackView)
-    
     }
-    
-    private func setUpConstraints() {
-        
 
+    private func setUpConstraints() {
         buttonToMain.setSize(width: 100, height: 30)
         stackView.setSize(width: 400, height: 200)
         stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
@@ -111,17 +112,11 @@ class LoginView: UIView {
                          paddingRight: 2,
                          width: 0,
                          height: 0)
-            
-
-
-        
-      
     }
+
     // MARK: - Button Actions
+
     @objc func handleButtonToMainTapped() {
-      
         delegate?.goToMainView()
     }
-    
-  
 }
