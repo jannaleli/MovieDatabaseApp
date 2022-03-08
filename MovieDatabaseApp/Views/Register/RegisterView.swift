@@ -3,13 +3,13 @@ import Foundation
 import UIKit
 
 protocol RegisterViewDelegate: AnyObject {
-    func goToMain(in view: LoginView)
+    func registerSelected( /* in view: LoginView */ )
 }
 
 class RegisterView: UIView {
     // MARK: - Public Properties
 
-    weak var delegate: RegisterViewControllerDelegate?
+    weak var delegate: RegisterViewDelegate?
 
     // MARK: - Private Properties
 
@@ -126,6 +126,6 @@ class RegisterView: UIView {
     // MARK: - Button Actions
 
     @objc func handleButtonToMainTapped() {
-        delegate?.goToMainView()
+        delegate?.registerSelected()
     }
 }

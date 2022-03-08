@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 protocol LoginViewDelegate: AnyObject {
-    func goToMain(in view: LoginView)
+    func loginSelected()
 }
 
 class LoginView: UIView {
     // MARK: - Public Properties
 
-    weak var delegate: LoginViewControllerDelegate?
+    weak var delegate: LoginViewDelegate?
 
     // MARK: - Private Properties
 
@@ -114,6 +114,6 @@ class LoginView: UIView {
     // MARK: - Button Actions
 
     @objc func handleButtonToMainTapped() {
-        delegate?.goToMainView()
+        delegate?.loginSelected()
     }
 }

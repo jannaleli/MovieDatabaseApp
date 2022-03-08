@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MainFactory {
-    func makeViewController(coordinator: MainCoordinator) -> MainViewController
+    func makeViewController(coordinator: MainCoordinator) -> HomeViewController
     /* No ViewModel yet */
     /* func makeViewModel(coordinator: MainCoordinator) -> ViewModel */
 }

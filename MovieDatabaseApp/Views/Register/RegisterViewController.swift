@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 public protocol RegisterViewControllerDelegate: AnyObject {
-    func goToMainView()
+    func registerCompleted()
 }
 
 class RegisterViewController: UIViewController {
     // MARK: - Public Properties
 
-    weak var delegate: RegisterCoordinatorDelegate?
+    weak var delegate: RegisterViewControllerDelegate?
     var registerView = RegisterView()
 
     // MARK: - Override
@@ -26,8 +26,8 @@ class RegisterViewController: UIViewController {
     }
 }
 
-extension RegisterViewController: RegisterViewControllerDelegate {
-    func goToMainView() {
-        delegate?.goToMain()
+extension RegisterViewController: RegisterViewDelegate {
+    func registerSelected() {
+        delegate?.registerCompleted()
     }
 }

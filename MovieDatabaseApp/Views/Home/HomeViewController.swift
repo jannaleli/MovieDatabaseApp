@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  HomeViewController.swift
 //  MovieDatabaseApp
 //
 //  Created by Jann Aleli Zaplan on 2022-03-05.
@@ -14,11 +14,11 @@ public protocol MainViewControllerDelegate: AnyObject {
     func goToDetailsView()
 }
 
-class MainViewController: UIViewController {
+class HomeViewController: UIViewController {
     // MARK: - Public Properties
 
     var delegate: MainCoordinatorDelegate?
-    var mainView = MainView()
+    var mainView = HomeView()
 
     // MARK: - Override
 
@@ -28,7 +28,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: MainViewControllerDelegate {
+extension HomeViewController: MainViewControllerDelegate {
     func goToDetailsView() {
         delegate?.goToDetailsView()
     }

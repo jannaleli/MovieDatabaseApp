@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 public protocol LoginViewControllerDelegate: AnyObject {
-    func goToMainView()
+    func loginCompleted()
 }
 
 class LoginViewController: UIViewController {
     // MARK: - Public Properties
 
-    weak var delegate: LoginCoordinatorDelegate?
+    weak var delegate: LoginViewControllerDelegate?
     var loginView = LoginView()
 
     // MARK: - Override
@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension LoginViewController: LoginViewControllerDelegate {
-    func goToMainView() {
-        delegate?.goToMain()
+extension LoginViewController: LoginViewDelegate {
+    func loginSelected() {
+        delegate?.loginCompleted()
     }
 }

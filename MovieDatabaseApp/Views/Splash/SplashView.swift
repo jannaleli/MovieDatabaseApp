@@ -10,36 +10,20 @@ import Foundation
 import UIKit
 
 protocol SplashViewDelegate: AnyObject {
-    func goToLogin(in view: SplashView)
-    func goToRegister(in view: SplashView)
+    func goToLogin()
+    func goToRegister()
 }
 
 class SplashView: UIView {
     // MARK: - Public Properties
 
-    weak var delegate: SplashViewControllerDelegate?
+    weak var delegate: SplashViewDelegate?
 
     // MARK: - Private Properties
 
     var titleLabel: CLTypingLabel = .init()
 
-    private lazy var buttonToLogin: UIButton = {
-        let buttonToLogin = UIButton()
-        var config = buttonToLogin.getConfig()
-        config.title = "Login"
-        config.baseBackgroundColor = .systemBlue
-        config.cornerStyle = .medium
-        config.preferredSymbolConfigurationForImage
-            = UIImage.SymbolConfiguration(scale: .medium)
-        buttonToLogin.setConfig(config: config)
-        buttonToLogin.isUserInteractionEnabled = true
-        buttonToLogin.addAction(
-            UIAction { _ in
-                self.handleButtonToLoginTapped()
-            }, for: .touchDown
-        )
-        return buttonToLogin
-    }()
+    private lazy var buttonToLogin: UIButton = makeLoginButton()
 
     private lazy var buttonToRegister: UIButton = {
         let buttonToRegister = UIButton()
@@ -124,5 +108,27 @@ class SplashView: UIView {
 
     @objc func handleButtonToRegisterTapped() {
         delegate?.goToRegister()
+    }
+}
+
+// MARK: - Factory
+
+extension SplashView {
+    func makeLoginButton() -> UIButton {
+        let buttonToLogin = UIButton()
+        var config = buttonToLogin.getConfig()
+        config.title = "Login"
+        config.baseBackgroundColor = .systemBlue
+        config.cornerStyle = .medium
+        config.preferredSymbolConfigurationForImage
+            = UIImage.SymbolConfiguration(scale: .medium)
+        buttonToLogin.setConfig(config: config)
+        buttonToLogin.isUserInteractionEnabled = true
+        buttonToLogin.addAction(
+            UIAction { _ in
+                self.handleButtonToLoginTapped()
+            }, for: .touchDown
+        )
+        return buttonToLogin
     }
 }

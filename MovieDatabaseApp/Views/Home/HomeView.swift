@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  HomeView.swift
 //  MovieDatabaseApp
 //
 //  Created by Jann Aleli Zaplan on 2022-03-05.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainView: UIView {
+class HomeView: UIView {
     // MARK: - Public Properties
 
     weak var delegate: MainViewControllerDelegate?

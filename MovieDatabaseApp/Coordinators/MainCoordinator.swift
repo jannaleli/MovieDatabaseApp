@@ -28,16 +28,26 @@ final class MainCoordinator: Coordinator {
     // MARK: - Public Methods
 
     func start() {
-        let mainViewController = MainViewController()
+        let mainViewController = HomeViewController()
         mainViewController.delegate = self
         navigationController?.viewControllers = [mainViewController]
     }
+
+    private func startHomeView() {}
+
+    private func startDetailsView() {}
 }
 
 // MARK: - Delegate Methods
 
 extension MainCoordinator: MainCoordinatorDelegate {
-    func goToDetailsView() {}
+    func goToDetailsView() {
+        startDetailsView()
+    }
+
+    func goToHomeView() {
+        startHomeView()
+    }
 }
 
 // MARK: - Factory

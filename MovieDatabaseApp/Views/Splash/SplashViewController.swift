@@ -11,7 +11,7 @@ public protocol SplashViewControllerDelegate: AnyObject {
 class SplashViewController: UIViewController {
     // MARK: - Public Properties
 
-    weak var delegate: SplashCoordinatorDelegate?
+    weak var delegate: SplashViewControllerDelegate?
     var splashView = SplashView()
 
     // MARK: - Override
@@ -26,7 +26,7 @@ class SplashViewController: UIViewController {
     }
 }
 
-extension SplashViewController: SplashViewControllerDelegate {
+extension SplashViewController: SplashViewDelegate {
     func goToLogin() {
         delegate?.goToLogin()
     }
