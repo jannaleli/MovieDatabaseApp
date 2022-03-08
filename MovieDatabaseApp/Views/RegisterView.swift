@@ -69,11 +69,8 @@ class RegisterView: UIView {
         config.title = "Register"
         config.baseBackgroundColor = .systemBlue
         config.cornerStyle = .large
-        // 1
         config.image = UIImage(systemName: "chevron.right")
-        // 2
         config.imagePadding = 5
-        // 3
         config.imagePlacement = .trailing
         buttonToMain.setConfig(config: config)
         buttonToMain.isUserInteractionEnabled = true
