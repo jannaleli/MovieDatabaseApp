@@ -25,33 +25,9 @@ class SplashView: UIView {
 
     private lazy var buttonToLogin: UIButton = makeLoginButton()
 
-    private lazy var buttonToRegister: UIButton = {
-        let buttonToRegister = UIButton()
-        var config = buttonToRegister.getConfig()
-        config.title = "Register"
-        config.baseBackgroundColor = .systemBlue
-        config.cornerStyle = .medium
+    private lazy var buttonToRegister: UIButton = makeRegisterButton()
 
-        buttonToRegister.setConfig(config: config)
-        buttonToRegister.addAction(
-            UIAction { _ in
-                self.handleButtonToRegisterTapped()
-            }, for: .touchDown
-        )
-        return buttonToRegister
-    }()
-
-    private lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 20.0
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        [self.titleLabel,
-         self.buttonToLogin,
-         self.buttonToRegister].forEach { stack.addArrangedSubview($0) }
-        return stack
-    }()
+    private lazy var stackView: UIStackView = makeStackView()
 
     // MARK: - Initialization
 
@@ -130,5 +106,33 @@ extension SplashView {
             }, for: .touchDown
         )
         return buttonToLogin
+    }
+
+    func makeRegisterButton() -> UIButton {
+        let buttonToRegister = UIButton()
+        var config = buttonToRegister.getConfig()
+        config.title = "Register"
+        config.baseBackgroundColor = .systemBlue
+        config.cornerStyle = .medium
+
+        buttonToRegister.setConfig(config: config)
+        buttonToRegister.addAction(
+            UIAction { _ in
+                self.handleButtonToRegisterTapped()
+            }, for: .touchDown
+        )
+        return buttonToRegister
+    }
+
+    func makeStackView() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20.0
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        [titleLabel,
+         buttonToLogin,
+         buttonToRegister].forEach { stack.addArrangedSubview($0) }
+        return stack
     }
 }
