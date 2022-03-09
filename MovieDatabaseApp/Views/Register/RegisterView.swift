@@ -21,19 +21,7 @@ class RegisterView: UIView {
 
     private lazy var lastName: UITextField = makeTextField(name: "Last Name")
 
-    private lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 20.0
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        [self.usernameField,
-         self.firstName,
-         self.lastName,
-         self.passwordField,
-         self.buttonToMain].forEach { stack.addArrangedSubview($0) }
-        return stack
-    }()
+    private lazy var stackView: UIStackView = makeStack()
 
     private lazy var buttonToMain: UIButton = makeRegisterButton()
 
@@ -112,5 +100,19 @@ extension RegisterView {
         textField.borderStyle = .roundedRect
 
         return textField
+    }
+
+    func makeStack() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20.0
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        [usernameField,
+         firstName,
+         lastName,
+         passwordField,
+         buttonToMain].forEach { stack.addArrangedSubview($0) }
+        return stack
     }
 }

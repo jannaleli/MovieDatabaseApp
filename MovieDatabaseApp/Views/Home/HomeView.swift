@@ -8,41 +8,28 @@
 import Foundation
 import UIKit
 
+protocol HomeViewDelegate: AnyObject {
+    func cellSelected()
+}
+
 class HomeView: UIView {
     // MARK: - Public Properties
 
-    weak var delegate: MainViewControllerDelegate?
+    weak var delegate: HomeViewDelegate?
 
     // MARK: - Private Properties
 
     private var sampleData = ["Eenie", "Mini", "Mini", "Mo"]
-    private var dataSource: TableDataSource?
-    private var tableDelegate: TableViewDelegate?
 
-    private var table: UITableView = .init()
+    private var dataSource: CollectionViewDataSource?
 
-    private lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.textColor = .systemBlue
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.kern: 2]
-        titleLabel.attributedText = NSAttributedString(string: "Movie Database \u{1F3A5}", attributes: attributes)
-        titleLabel.textAlignment = .center
+    private var collectionDelegate: CollectionViewDelegate?
 
-        titleLabel.font = UIFont(name: "Helvetica Neue", size: 30)
+    private lazy var collectionView: UICollectionView = makeCollectionView()
 
-        return titleLabel
-    }()
+    private lazy var titleLabel: UILabel = makeTitleLabel()
 
-    private lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 20.0
-        stack.alignment = .fill
-        stack.distribution = .fill
-        [self.titleLabel,
-         self.table].forEach { stack.addArrangedSubview($0) }
-        return stack
-    }()
+    private lazy var stackView: UIStackView = makeStackView()
 
     // MARK: - Initialization
 
@@ -67,19 +54,19 @@ class HomeView: UIView {
     }
 
     private func createSubviews() {
-        dataSource = TableDataSource(dataSrc: sampleData)
-        tableDelegate = TableViewDelegate()
+        dataSource = CollectionViewDataSource(dataSrc: sampleData)
+        collectionDelegate = CollectionViewDelegate()
         // self.table.dataSource = TableDataSource(dataSrc: sampleData)
         // This will generate a warning that your dataSource is weak and thus will be deallocated and your table will never load
-        table.dataSource = dataSource
-        table.delegate = tableDelegate
-
-        table.register(UITableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "Cell")
+        collectionView.dataSource = dataSource
+        collectionView.delegate = collectionDelegate
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.identifier)
+        collectionView.reloadData()
         addSubview(stackView)
     }
 
     private func setUpConstraints() {
-        stackView.setSize(width: 400, height: 500)
+        // stackView.setSize(width: 400, height: 500)
         // stackView.center(centerX: layoutMarginsGuide.centerXAnchor, centerY: layoutMarginsGuide.centerYAnchor)
 
         stackView.anchor(top: layoutMarginsGuide.topAnchor,
@@ -92,5 +79,45 @@ class HomeView: UIView {
                          paddingRight: 2,
                          width: 0,
                          height: 0)
+    }
+
+    // MARK: - Actions
+
+    @objc func handleCellTapped() {
+        delegate?.cellSelected()
+    }
+}
+
+// MARK: - Factory
+
+extension HomeView {
+    func makeCollectionView() -> UICollectionView {
+        let viewLayout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
+        collectionView.backgroundColor = .white
+        return collectionView
+    }
+
+    func makeStackView() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20.0
+        stack.alignment = .fill
+        stack.distribution = .fill
+        [titleLabel,
+         collectionView].forEach { stack.addArrangedSubview($0) }
+        return stack
+    }
+
+    func makeTitleLabel() -> UILabel {
+        let titleLabel = UILabel()
+        titleLabel.textColor = .systemBlue
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.kern: 2]
+        titleLabel.attributedText = NSAttributedString(string: "Movie Database \u{1F3A5}", attributes: attributes)
+        titleLabel.textAlignment = .center
+
+        titleLabel.font = UIFont(name: "Helvetica Neue", size: 30)
+
+        return titleLabel
     }
 }

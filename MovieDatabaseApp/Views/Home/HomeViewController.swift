@@ -10,26 +10,26 @@ import UIKit
 
 // MARK: - Public Protocol
 
-public protocol MainViewControllerDelegate: AnyObject {
+public protocol HomeViewControllerDelegate: AnyObject {
     func goToDetailsView()
 }
 
 class HomeViewController: UIViewController {
     // MARK: - Public Properties
 
-    var delegate: MainCoordinatorDelegate?
-    var mainView = HomeView()
+    weak var delegate: HomeViewControllerDelegate?
+    var homeView = HomeView()
 
     // MARK: - Override
 
     override func loadView() {
-        mainView.delegate = self
-        view = mainView
+        homeView.delegate = self
+        view = homeView
     }
 }
 
-extension HomeViewController: MainViewControllerDelegate {
-    func goToDetailsView() {
+extension HomeViewController: HomeViewDelegate {
+    func cellSelected() {
         delegate?.goToDetailsView()
     }
 }

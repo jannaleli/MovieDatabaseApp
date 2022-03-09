@@ -19,55 +19,13 @@ class LoginView: UIView {
 
     // MARK: - Private Properties
 
-    private lazy var buttonToMain: UIButton = {
-        let buttonToMain = UIButton()
-        var config = buttonToMain.getConfig()
-        config.title = "Login"
-        config.baseBackgroundColor = .systemBlue
-        config.cornerStyle = .large
-        config.image = UIImage(systemName: "chevron.right")
-        config.imagePadding = 5
-        config.imagePlacement = .trailing
-        buttonToMain.setConfig(config: config)
-        buttonToMain.isUserInteractionEnabled = true
-        buttonToMain.addAction(
-            UIAction { _ in
-                self.handleButtonToMainTapped()
-            }, for: .touchDown
-        )
-        return buttonToMain
-    }()
+    private lazy var buttonToMain: UIButton = makeLoginButton()
 
-    private lazy var usernameField: UITextField = {
-        let usernameField = UITextField()
-        usernameField.placeholder = "Username"
-        usernameField.backgroundColor = .white
-        usernameField.borderStyle = .roundedRect
+    private lazy var usernameField: UITextField = makeTextField(name: "Username")
 
-        return usernameField
-    }()
+    private lazy var passwordField: UITextField = makeTextField(name: "Password")
 
-    private lazy var passwordField: UITextField = {
-        let passwordField = UITextField()
-        passwordField.placeholder = "Password"
-        passwordField.backgroundColor = .white
-        passwordField.borderStyle = .roundedRect
-        passwordField.isSecureTextEntry = true
-
-        return passwordField
-    }()
-
-    private lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 20.0
-        stack.alignment = .fill
-        stack.distribution = .fillEqually
-        [self.usernameField,
-         self.passwordField,
-         self.buttonToMain].forEach { stack.addArrangedSubview($0) }
-        return stack
-    }()
+    private lazy var stackView: UIStackView = makeStack()
 
     // MARK: - Initialization
 
@@ -115,5 +73,49 @@ class LoginView: UIView {
 
     @objc func handleButtonToMainTapped() {
         delegate?.loginSelected()
+    }
+}
+
+// MARK: - Factory
+
+extension LoginView {
+    func makeLoginButton() -> UIButton {
+        let buttonToMain = UIButton()
+        var config = buttonToMain.getConfig()
+        config.title = "Login"
+        config.baseBackgroundColor = .systemBlue
+        config.cornerStyle = .large
+        config.image = UIImage(systemName: "chevron.right")
+        config.imagePadding = 5
+        config.imagePlacement = .trailing
+        buttonToMain.setConfig(config: config)
+        buttonToMain.isUserInteractionEnabled = true
+        buttonToMain.addAction(
+            UIAction { _ in
+                self.handleButtonToMainTapped()
+            }, for: .touchDown
+        )
+        return buttonToMain
+    }
+
+    func makeTextField(name: String) -> UITextField {
+        let textField = UITextField()
+        textField.placeholder = name
+        textField.backgroundColor = .white
+        textField.borderStyle = .roundedRect
+
+        return textField
+    }
+
+    func makeStack() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20.0
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        [usernameField,
+         passwordField,
+         buttonToMain].forEach { stack.addArrangedSubview($0) }
+        return stack
     }
 }

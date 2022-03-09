@@ -28,9 +28,9 @@ final class MainCoordinator: Coordinator {
     // MARK: - Public Methods
 
     func start() {
-        let mainViewController = HomeViewController()
-        mainViewController.delegate = self
-        navigationController?.viewControllers = [mainViewController]
+        let homeViewController = HomeViewController()
+        homeViewController.delegate = self
+        navigationController?.viewControllers = [homeViewController]
     }
 
     private func startHomeView() {}
@@ -40,7 +40,7 @@ final class MainCoordinator: Coordinator {
 
 // MARK: - Delegate Methods
 
-extension MainCoordinator: MainCoordinatorDelegate {
+extension MainCoordinator: HomeViewControllerDelegate {
     func goToDetailsView() {
         startDetailsView()
     }
