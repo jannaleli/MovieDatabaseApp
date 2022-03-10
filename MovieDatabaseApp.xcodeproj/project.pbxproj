@@ -23,8 +23,10 @@
 		10C56C3327D93D9700911437 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C3227D93D9700911437 /* CollectionViewCell.swift */; };
 		10C56C3627DA2B2400911437 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C3527DA2B2400911437 /* DetailView.swift */; };
 		10C56C3827DA2B3300911437 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C3727DA2B3300911437 /* DetailViewController.swift */; };
+		10C56C3D27DA861100911437 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C3C27DA861100911437 /* FirebaseServices.swift */; };
+		10C56C4227DA8ABF00911437 /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C4127DA8ABF00911437 /* AppDependencyContainer.swift */; };
+		10C56C4427DA8DEF00911437 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C4327DA8DEF00911437 /* RegisterViewModel.swift */; };
 		10E4570B27D2CA64006507EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E4570A27D2CA64006507EF /* GoogleService-Info.plist */; };
-		10EAAD2B27D66ED000262F51 /* BaseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EAAD2A27D66ED000262F51 /* BaseFactory.swift */; };
 		6488768A0BCCD6A376EC7370 /* Pods_MovieDatabaseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E0C2805874CC4543BAF0D3D /* Pods_MovieDatabaseAppTests.framework */; };
 		AB6C744327D507F70089105D /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C744227D507F70089105D /* AutoLayout.swift */; };
 		AB6C744627D522790089105D /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C744527D522790089105D /* StackView.swift */; };
@@ -85,8 +87,10 @@
 		10C56C3227D93D9700911437 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		10C56C3527DA2B2400911437 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		10C56C3727DA2B3300911437 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		10C56C3C27DA861100911437 /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
+		10C56C4127DA8ABF00911437 /* AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyContainer.swift; sourceTree = "<group>"; };
+		10C56C4327DA8DEF00911437 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		10E4570A27D2CA64006507EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		10EAAD2A27D66ED000262F51 /* BaseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFactory.swift; sourceTree = "<group>"; };
 		1E0C2805874CC4543BAF0D3D /* Pods_MovieDatabaseAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F1C277D074B65E84FC276B /* Pods_MovieDatabaseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		626DD555D2A6B8CAA621832F /* Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +170,7 @@
 			children = (
 				ABA7D8A527D39C5700B39566 /* RegisterViewController.swift */,
 				ABA7D8AF27D39C9300B39566 /* RegisterView.swift */,
+				10C56C4327DA8DEF00911437 /* RegisterViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -204,14 +209,13 @@
 		1077214D27D2B97B005B63F5 /* MovieDatabaseApp */ = {
 			isa = PBXGroup;
 			children = (
-				10EAAD2927D66E9800262F51 /* Factory */,
+				10C56C3E27DA886900911437 /* App */,
+				10C56C3A27DA859100911437 /* Shared */,
 				AB6C744127D507EB0089105D /* Utils */,
 				ABA7D89E27D3947000B39566 /* Views */,
 				ABA7D89B27D3943500B39566 /* Coordinators */,
 				ABA7D89927D3941F00B39566 /* Components */,
 				10E4570A27D2CA64006507EF /* GoogleService-Info.plist */,
-				1077214E27D2B97B005B63F5 /* AppDelegate.swift */,
-				1077215027D2B97B005B63F5 /* SceneDelegate.swift */,
 				1077215427D2B97B005B63F5 /* Main.storyboard */,
 				1077215227D2B97B005B63F5 /* ViewController.swift */,
 				1077215727D2B97C005B63F5 /* Assets.xcassets */,
@@ -266,12 +270,46 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		10EAAD2927D66E9800262F51 /* Factory */ = {
+		10C56C3A27DA859100911437 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				10EAAD2A27D66ED000262F51 /* BaseFactory.swift */,
+				10C56C3F27DA8A9000911437 /* Utilities */,
+				10C56C3B27DA85FA00911437 /* Firebase */,
 			);
-			path = Factory;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		10C56C3B27DA85FA00911437 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				10C56C3C27DA861100911437 /* FirebaseServices.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		10C56C3E27DA886900911437 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1077214E27D2B97B005B63F5 /* AppDelegate.swift */,
+				1077215027D2B97B005B63F5 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		10C56C3F27DA8A9000911437 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				10C56C4027DA8AA100911437 /* Dependency Container */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		10C56C4027DA8AA100911437 /* Dependency Container */ = {
+			isa = PBXGroup;
+			children = (
+				10C56C4127DA8ABF00911437 /* AppDependencyContainer.swift */,
+			);
+			path = "Dependency Container";
 			sourceTree = "<group>";
 		};
 		AB6C744127D507EB0089105D /* Utils */ = {
@@ -625,13 +663,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				10C56C2C27D936E900911437 /* CollectionViewDelegate.swift in Sources */,
+				10C56C4427DA8DEF00911437 /* RegisterViewModel.swift in Sources */,
 				ABA7D8B027D39C9300B39566 /* RegisterView.swift in Sources */,
 				AB6C744627D522790089105D /* StackView.swift in Sources */,
 				1077215327D2B97B005B63F5 /* ViewController.swift in Sources */,
 				ABA958FB27D3F9FD00E8A45D /* TableDelegate.swift in Sources */,
 				ABA7D8B427D3A3FB00B39566 /* AppCoordinator.swift in Sources */,
 				ABA7D8AC27D39C7C00B39566 /* HomeView.swift in Sources */,
-				10EAAD2B27D66ED000262F51 /* BaseFactory.swift in Sources */,
+				10C56C4227DA8ABF00911437 /* AppDependencyContainer.swift in Sources */,
 				10C56C3327D93D9700911437 /* CollectionViewCell.swift in Sources */,
 				ABA958FD27D3FD3000E8A45D /* Table.swift in Sources */,
 				ABA7D8AA27D39C7300B39566 /* SplashView.swift in Sources */,
@@ -647,6 +686,7 @@
 				AB6C744327D507F70089105D /* AutoLayout.swift in Sources */,
 				ABA7D8A827D39C6A00B39566 /* SplashViewController.swift in Sources */,
 				10C56C2E27D936F700911437 /* CollectionViewDataSource.swift in Sources */,
+				10C56C3D27DA861100911437 /* FirebaseServices.swift in Sources */,
 				ABA7D8AE27D39C8700B39566 /* LoginView.swift in Sources */,
 				ABA7D8A227D39BF900B39566 /* HomeViewController.swift in Sources */,
 				101FBF7627D7B3B200E44450 /* AuthCoordinator.swift in Sources */,

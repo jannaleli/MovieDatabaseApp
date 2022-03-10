@@ -1,4 +1,5 @@
 
+import Firebase
 import Foundation
 import UIKit
 
@@ -69,7 +70,19 @@ class RegisterView: UIView {
     // MARK: - Button Actions
 
     @objc func handleButtonToMainTapped() {
-        delegate?.registerSelected()
+        if let email = usernameField.text, let password = passwordField.text {
+            Auth.auth().createUser(withEmail: email, password: password, completion: { [self]
+                _, error in
+
+                if let e = error {
+                    // TODO: Place an error completion block in here
+                    print(e)
+                } else {
+                    delegate?.registerSelected()
+                }
+
+            })
+        }
     }
 }
 
@@ -109,8 +122,6 @@ extension RegisterView {
         stack.alignment = .fill
         stack.distribution = .fillEqually
         [usernameField,
-         firstName,
-         lastName,
          passwordField,
          buttonToMain].forEach { stack.addArrangedSubview($0) }
         return stack

@@ -5,8 +5,8 @@
 //  Created by Jann Zaplan on 2022-03-04.
 //
 
+import Firebase
 import UIKit
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var coordinator: AppCoordinator?
@@ -16,7 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        coordinator = AppCoordinator(scene: scene as! UIWindowScene)
+
+        let firebaseServices = DefaultFirebaseServices()
+        let dependencyContainer = AppDependencyContaner(firebaseService: firebaseServices)
+        coordinator = AppCoordinator(scene: scene as! UIWindowScene, dependencyContainer: dependencyContainer)
         coordinator?.start()
     }
 

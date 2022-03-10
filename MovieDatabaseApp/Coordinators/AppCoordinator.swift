@@ -17,11 +17,14 @@ final class AppCoordinator: Coordinator {
 
     var window = UIWindow()
 
+    var dependencyContainer: AppDependencyContaner
+
     // MARK: - Initialization
 
-    init(scene: UIWindowScene) {
+    init(scene: UIWindowScene, dependencyContainer: AppDependencyContaner) {
         navigationController = UINavigationController()
         window = UIWindow(windowScene: scene)
+        self.dependencyContainer = dependencyContainer
     }
 
     // MARK: - Public Methods

@@ -5,6 +5,7 @@
 //  Created by Jann Aleli Zaplan on 2022-03-05.
 //
 
+import Firebase
 import Foundation
 import UIKit
 
@@ -72,7 +73,19 @@ class LoginView: UIView {
     // MARK: - Button Actions
 
     @objc func handleButtonToMainTapped() {
-        delegate?.loginSelected()
+        if let email = usernameField.text, let password = passwordField.text {
+            Auth.auth().signIn(withEmail: email, password: password, completion: { [self]
+                _, error in
+
+                if let e = error {
+                    // TODO: Place an error completion block in here
+                    print(e)
+                } else {
+                    delegate?.loginSelected()
+                }
+
+            })
+        }
     }
 }
 
