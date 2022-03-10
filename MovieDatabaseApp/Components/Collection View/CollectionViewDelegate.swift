@@ -13,7 +13,13 @@ private enum LayoutConstant {
     static let itemHeight: CGFloat = 300.0
 }
 
+protocol CollectionViewDelegateProtocol: AnyObject {
+    func cellSelected()
+}
+
 final class CollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    weak var delegate: CollectionViewDelegateProtocol?
+
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 50)
     }
@@ -28,5 +34,10 @@ final class CollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollec
 
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
         return LayoutConstant.spacing
+    }
+
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item + 1)
+        delegate?.cellSelected()
     }
 }

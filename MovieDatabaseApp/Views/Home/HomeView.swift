@@ -60,6 +60,8 @@ class HomeView: UIView {
         // This will generate a warning that your dataSource is weak and thus will be deallocated and your table will never load
         collectionView.dataSource = dataSource
         collectionView.delegate = collectionDelegate
+        let collectionViewDelegate = collectionView.delegate as! CollectionViewDelegate
+        collectionViewDelegate.delegate = self
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.identifier)
         collectionView.reloadData()
         addSubview(stackView)
@@ -119,5 +121,11 @@ extension HomeView {
         titleLabel.font = UIFont(name: "Helvetica Neue", size: 30)
 
         return titleLabel
+    }
+}
+
+extension HomeView: CollectionViewDelegateProtocol {
+    func cellSelected() {
+        delegate?.cellSelected()
     }
 }
