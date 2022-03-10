@@ -14,17 +14,13 @@ class RegisterView: UIView {
 
     // MARK: - Private Properties
 
-    private lazy var usernameField: UITextField = makeTextField(name: "Username")
+    private lazy var usernameField: UITextField = makeTextField(.username)
 
-    private lazy var passwordField: UITextField = makeTextField(name: "Password")
-
-    private lazy var firstName: UITextField = makeTextField(name: "First Name")
-
-    private lazy var lastName: UITextField = makeTextField(name: "Last Name")
+    private lazy var passwordField: UITextField = makeTextField(.password)
 
     private lazy var stackView: UIStackView = makeStack()
 
-    private lazy var buttonToMain: UIButton = makeRegisterButton()
+    private lazy var buttonToMain: UIButton = makeButton(.register)
 
     // MARK: - Initialization
 
@@ -33,6 +29,7 @@ class RegisterView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        addAction()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +37,7 @@ class RegisterView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        addAction()
     }
 
     // MARK: - Private Methods
@@ -67,6 +65,14 @@ class RegisterView: UIView {
                          height: 0)
     }
 
+    private func addAction() {
+        buttonToMain.addAction(
+            UIAction { _ in
+                self.handleButtonToMainTapped()
+            }, for: .touchDown
+        )
+    }
+
     // MARK: - Button Actions
 
     @objc func handleButtonToMainTapped() {
@@ -87,34 +93,6 @@ class RegisterView: UIView {
 }
 
 extension RegisterView {
-    func makeRegisterButton() -> UIButton {
-        let buttonToMain = UIButton()
-        var config = buttonToMain.getConfig()
-        config.title = "Register"
-        config.baseBackgroundColor = .systemBlue
-        config.cornerStyle = .large
-        config.image = UIImage(systemName: "chevron.right")
-        config.imagePadding = 5
-        config.imagePlacement = .trailing
-        buttonToMain.setConfig(config: config)
-        buttonToMain.isUserInteractionEnabled = true
-        buttonToMain.addAction(
-            UIAction { _ in
-                self.handleButtonToMainTapped()
-            }, for: .touchDown
-        )
-        return buttonToMain
-    }
-
-    func makeTextField(name: String) -> UITextField {
-        let textField = UITextField()
-        textField.placeholder = name
-        textField.backgroundColor = .white
-        textField.borderStyle = .roundedRect
-
-        return textField
-    }
-
     func makeStack() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .vertical

@@ -17,6 +17,8 @@ class DetailView: UIView {
 
     weak var delegate: DetailViewDelegate?
 
+    // MARK: - Private Properties
+
     private lazy var titleLabel: UILabel = makeTitleLabel()
 
     private lazy var stackView: UIStackView = makeStackView()
@@ -28,12 +30,16 @@ class DetailView: UIView {
         setUpConstraints()
     }
 
+    // MARK: - Initialization
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setGeneralConfiguration()
         createSubviews()
         setUpConstraints()
     }
+
+    // MARK: - Private Methods
 
     private func setGeneralConfiguration() {}
 
@@ -59,11 +65,15 @@ class DetailView: UIView {
                          height: 0)
     }
 
+    // MARK: - Swipe Gesture Handler
+
     @objc func respondToSwipeGesture() {
         print("Swiped!!")
         delegate?.goToHomeView()
     }
 }
+
+// MARK: - Factory
 
 extension DetailView {
     func makeTitleLabel() -> UILabel {

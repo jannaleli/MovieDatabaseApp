@@ -20,11 +20,11 @@ class LoginView: UIView {
 
     // MARK: - Private Properties
 
-    private lazy var buttonToMain: UIButton = makeLoginButton()
+    private lazy var buttonToMain: UIButton = makeButton(.login)
 
-    private lazy var usernameField: UITextField = makeTextField(name: "Username")
+    private lazy var usernameField: UITextField = makeTextField(.username)
 
-    private lazy var passwordField: UITextField = makeTextField(name: "Password")
+    private lazy var passwordField: UITextField = makeTextField(.password)
 
     private lazy var stackView: UIStackView = makeStack()
 
@@ -35,6 +35,7 @@ class LoginView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        addAction()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,6 +43,7 @@ class LoginView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        addAction()
     }
 
     // MARK: - Private Methods
@@ -52,6 +54,14 @@ class LoginView: UIView {
 
     private func createSubviews() {
         addSubview(stackView)
+    }
+
+    private func addAction() {
+        buttonToMain.addAction(
+            UIAction { _ in
+                self.handleButtonToMainTapped()
+            }, for: .touchDown
+        )
     }
 
     private func setUpConstraints() {
@@ -92,34 +102,6 @@ class LoginView: UIView {
 // MARK: - Factory
 
 extension LoginView {
-    func makeLoginButton() -> UIButton {
-        let buttonToMain = UIButton()
-        var config = buttonToMain.getConfig()
-        config.title = "Login"
-        config.baseBackgroundColor = .systemBlue
-        config.cornerStyle = .large
-        config.image = UIImage(systemName: "chevron.right")
-        config.imagePadding = 5
-        config.imagePlacement = .trailing
-        buttonToMain.setConfig(config: config)
-        buttonToMain.isUserInteractionEnabled = true
-        buttonToMain.addAction(
-            UIAction { _ in
-                self.handleButtonToMainTapped()
-            }, for: .touchDown
-        )
-        return buttonToMain
-    }
-
-    func makeTextField(name: String) -> UITextField {
-        let textField = UITextField()
-        textField.placeholder = name
-        textField.backgroundColor = .white
-        textField.borderStyle = .roundedRect
-
-        return textField
-    }
-
     func makeStack() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .vertical

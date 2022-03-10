@@ -56,8 +56,6 @@ class HomeView: UIView {
     private func createSubviews() {
         dataSource = CollectionViewDataSource(dataSrc: sampleData)
         collectionDelegate = CollectionViewDelegate()
-        // self.table.dataSource = TableDataSource(dataSrc: sampleData)
-        // This will generate a warning that your dataSource is weak and thus will be deallocated and your table will never load
         collectionView.dataSource = dataSource
         collectionView.delegate = collectionDelegate
         let collectionViewDelegate = collectionView.delegate as! CollectionViewDelegate

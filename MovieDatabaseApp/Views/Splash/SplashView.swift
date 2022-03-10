@@ -23,9 +23,9 @@ class SplashView: UIView {
 
     var titleLabel: CLTypingLabel = .init()
 
-    private lazy var buttonToLogin: UIButton = makeLoginButton()
+    private lazy var buttonToLogin: UIButton = makeButton(.login)
 
-    private lazy var buttonToRegister: UIButton = makeRegisterButton()
+    private lazy var buttonToRegister: UIButton = makeButton(.register)
 
     private lazy var stackView: UIStackView = makeStackView()
 
@@ -36,6 +36,7 @@ class SplashView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        addActions()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +44,7 @@ class SplashView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        addActions()
     }
 
     // MARK: - Methods
@@ -76,6 +78,20 @@ class SplashView: UIView {
                          height: 0)
     }
 
+    private func addActions() {
+        buttonToLogin.addAction(
+            UIAction { _ in
+                self.handleButtonToLoginTapped()
+            }, for: .touchDown
+        )
+
+        buttonToRegister.addAction(
+            UIAction { _ in
+                self.handleButtonToRegisterTapped()
+            }, for: .touchDown
+        )
+    }
+
     // MARK: - Button Actions
 
     @objc func handleButtonToLoginTapped() {
@@ -90,40 +106,6 @@ class SplashView: UIView {
 // MARK: - Factory
 
 extension SplashView {
-    func makeLoginButton() -> UIButton {
-        let buttonToLogin = UIButton()
-        var config = buttonToLogin.getConfig()
-        config.title = "Login"
-        config.baseBackgroundColor = .systemBlue
-        config.cornerStyle = .medium
-        config.preferredSymbolConfigurationForImage
-            = UIImage.SymbolConfiguration(scale: .medium)
-        buttonToLogin.setConfig(config: config)
-        buttonToLogin.isUserInteractionEnabled = true
-        buttonToLogin.addAction(
-            UIAction { _ in
-                self.handleButtonToLoginTapped()
-            }, for: .touchDown
-        )
-        return buttonToLogin
-    }
-
-    func makeRegisterButton() -> UIButton {
-        let buttonToRegister = UIButton()
-        var config = buttonToRegister.getConfig()
-        config.title = "Register"
-        config.baseBackgroundColor = .systemBlue
-        config.cornerStyle = .medium
-
-        buttonToRegister.setConfig(config: config)
-        buttonToRegister.addAction(
-            UIAction { _ in
-                self.handleButtonToRegisterTapped()
-            }, for: .touchDown
-        )
-        return buttonToRegister
-    }
-
     func makeStackView() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .vertical
