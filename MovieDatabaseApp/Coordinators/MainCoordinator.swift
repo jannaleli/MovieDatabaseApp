@@ -33,12 +33,14 @@ final class MainCoordinator: Coordinator {
         navigationController?.viewControllers = [homeViewController]
     }
 
-    private func startHomeView() {}
+    private func startHomeView() {
+        navigationController?.popViewController(animated: true)
+    }
 
     private func startDetailsView() {
         let detailViewController = DetailViewController()
         detailViewController.delegate = self
-        navigationController?.viewControllers = [detailViewController]
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
@@ -48,12 +50,12 @@ extension MainCoordinator: HomeViewControllerDelegate {
     func goToDetailsView() {
         startDetailsView()
     }
-
-    func goToHomeView() {
-        startHomeView()
-    }
 }
 
 // MARK: - Factory
 
-extension MainCoordinator: DetailViewControllerDelegate {}
+extension MainCoordinator: DetailViewControllerDelegate {
+    func goToHomeView() {
+        startHomeView()
+    }
+}

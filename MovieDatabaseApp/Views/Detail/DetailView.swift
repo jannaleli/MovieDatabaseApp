@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public protocol DetailViewDelegate: AnyObject {
-    func goToDetailsView()
+    func goToHomeView()
 }
 
 class DetailView: UIView {
@@ -38,6 +38,9 @@ class DetailView: UIView {
     private func setGeneralConfiguration() {}
 
     private func createSubviews() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeRight.direction = .right
+        addGestureRecognizer(swipeRight)
         addSubview(stackView)
     }
 
@@ -54,6 +57,11 @@ class DetailView: UIView {
                          paddingRight: 10,
                          width: 0,
                          height: 0)
+    }
+
+    @objc func respondToSwipeGesture() {
+        print("Swiped!!")
+        delegate?.goToHomeView()
     }
 }
 

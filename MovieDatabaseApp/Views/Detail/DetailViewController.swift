@@ -10,6 +10,7 @@ import UIKit
 
 public protocol DetailViewControllerDelegate: AnyObject {
     func goToDetailsView()
+    func goToHomeView()
 }
 
 class DetailViewController: UIViewController {
@@ -23,5 +24,7 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailViewDelegate {
-    func goToDetailsView() {}
+    func goToHomeView() {
+        delegate?.goToHomeView()
+    }
 }
