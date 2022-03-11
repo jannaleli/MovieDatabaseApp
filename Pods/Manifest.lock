@@ -338,6 +338,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - Alertift (4.2.0)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -434,6 +435,7 @@ PODS:
   - SwiftFormat/CLI (0.49.5)
 
 DEPENDENCIES:
+  - Alertift (~> 4.2)
   - CLTypingLabel
   - Firebase/Auth
   - Firebase/Firestore
@@ -442,6 +444,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - Alertift
     - BoringSSL-GRPC
     - CLTypingLabel
     - Firebase
@@ -461,6 +464,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  Alertift: 17b37be915cd28edeceabd438e4134d041ea825c
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
   Firebase: 580d09e8edafc3073ebf09c03fd42e4d80d35fe9
@@ -478,6 +482,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SwiftFormat: 803e5a44e083cf414b3072381db0e9e65f4c0d0d
 
-PODFILE CHECKSUM: 326ee240fe63f766f1e75743e76042dd25c61877
+PODFILE CHECKSUM: 811cd23094a9a1541a5b8406ce869aea9d1ebfe5
 
 COCOAPODS: 1.11.2

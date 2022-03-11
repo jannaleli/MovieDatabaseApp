@@ -8,6 +8,7 @@ target 'MovieDatabaseApp' do
   # Pods for MovieDatabaseApp
   pod 'CLTypingLabel'
   pod 'SwiftFormat/CLI', '~> 0.49'
+  pod 'Alertift', '~> 4.2'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   target 'MovieDatabaseAppTests' do
