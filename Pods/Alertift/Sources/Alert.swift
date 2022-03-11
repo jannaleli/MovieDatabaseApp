@@ -9,23 +9,23 @@
 import Foundation
 import UIKit
 
-extension Alertift {
-    public enum AlertImagePosition {
+public extension Alertift {
+    enum AlertImagePosition {
         case top // Above title and message
         case center // Between title and message
         case bottom // Below title and message
     }
-    
+
     /// Alert
-    final public class Alert: AlertType, _AlertType {
+    final class Alert: AlertType, _AlertType {
         public typealias Handler = (UIAlertAction, Int, [UITextField]?) -> Void
 
         /// TextFieldHandler
-        public typealias TextFieldHandler = ((UITextField, Int) -> Void)
-        
+        public typealias TextFieldHandler = (UITextField, Int) -> Void
+
         /// ActionWithTextFieldsHandler
         public typealias ActionWithTextFieldsHandler = ([UITextField]?) -> Void
-        
+
         var _alertController: InnerAlertController!
         public var alertController: UIAlertController {
             return _alertController as UIAlertController
@@ -45,7 +45,7 @@ extension Alertift {
         public init(title: String? = nil, message: String? = nil) {
             buildAlertControlelr(title: title, message: message, style: .alert)
         }
-        
+
         public func action(_ action: Alertift.Action, handler: Handler?) -> Self {
             return self.action(action, isPreferred: false, handler: handler)
         }
@@ -53,6 +53,7 @@ extension Alertift {
         public func action(_ action: Alertift.Action, handler: ShortHandler? = nil) -> Self {
             return self.action(action) { _, _, _ in handler?() }
         }
+
         /// Add action to Alert
         ///
         /// - Parameters:
@@ -96,7 +97,7 @@ extension Alertift {
         public func action(_ action: Alertift.Action, image: UIImage?, renderingMode: UIImage.RenderingMode = .automatic, isPreferred: Bool, handler: Handler?) -> Self {
             let alertAction = buildAlertAction(
                 action,
-                handler: merge(_alertController.actionWithTextFieldsHandler, handler ?? { (_, _, _)in })
+                handler: merge(_alertController.actionWithTextFieldsHandler, handler ?? { _, _, _ in })
             )
 
             if let image = image {
@@ -120,10 +121,10 @@ extension Alertift {
                 handler?(textField)
                 self?._alertController.registerTextFieldObserver(textField)
             }
-            
+
             return self
         }
-        
+
         /// Add textFieldHandler to alertController.
         ///
         /// If text field's text is changed, execute textFieldHandler with text field and index.
@@ -134,7 +135,7 @@ extension Alertift {
             _alertController.textFieldTextDidChangeHandler = textFieldTextDidChangeHandler
             return self
         }
-        
+
         /// Add alertAction to alertController
         ///
         /// - Parameters:
@@ -146,7 +147,7 @@ extension Alertift {
                 _alertController.preferredAction = alertAction
             }
         }
-        
+
         func convertFinallyHandler(_ handler: Any) -> InnerAlertController.FinallyHandler {
             return { (handler as? Handler)?($0, $1, $2) }
         }
@@ -155,7 +156,7 @@ extension Alertift {
             _alertController.setImage(image, imageTopMargin: imageTopMargin)
             return self
         }
-        
+
         deinit {
             Debug.log()
         }

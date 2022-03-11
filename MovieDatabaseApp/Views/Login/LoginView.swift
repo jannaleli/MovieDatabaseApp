@@ -5,6 +5,7 @@
 //  Created by Jann Aleli Zaplan on 2022-03-05.
 //
 
+import Alertift
 import Firebase
 import Foundation
 import UIKit
@@ -89,7 +90,7 @@ class LoginView: UIView {
 
                 if let e = error {
                     // TODO: Place an error completion block in here
-                    print(e)
+                    makeErrorAlert(message: e.localizedDescription)
                 } else {
                     delegate?.loginSelected()
                 }
@@ -102,6 +103,12 @@ class LoginView: UIView {
 // MARK: - Factory
 
 extension LoginView {
+    func makeErrorAlert(message: String) {
+        Alertift.alert(title: "Error", message: message)
+            .action(.default("Ok"))
+            .show(on: findViewController())
+    }
+
     func makeStack() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .vertical

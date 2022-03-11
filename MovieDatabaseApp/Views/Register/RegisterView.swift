@@ -1,8 +1,8 @@
 
+import Alertift
 import Firebase
 import Foundation
 import UIKit
-
 protocol RegisterViewDelegate: AnyObject {
     func registerSelected( /* in view: LoginView */ )
 }
@@ -81,8 +81,7 @@ class RegisterView: UIView {
                 _, error in
 
                 if let e = error {
-                    // TODO: Place an error completion block in here
-                    print(e)
+                    makeErrorAlert(message: e.localizedDescription)
                 } else {
                     delegate?.registerSelected()
                 }
@@ -93,6 +92,12 @@ class RegisterView: UIView {
 }
 
 extension RegisterView {
+    func makeErrorAlert(message: String) {
+        Alertift.alert(title: "Error", message: message)
+            .action(.default("Ok"))
+            .show(on: findViewController())
+    }
+
     func makeStack() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .vertical

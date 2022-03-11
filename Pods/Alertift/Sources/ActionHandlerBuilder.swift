@@ -11,7 +11,7 @@ import UIKit
 
 final class ActionHandlerBuilder {
     private init() {}
-    
+
     /// Build closure using two closure.
     static func build<T: UIAlertAction>(_ h1: @escaping (T) -> Void, _ h2: @escaping (T) -> Void) -> (T) -> Void {
         return {

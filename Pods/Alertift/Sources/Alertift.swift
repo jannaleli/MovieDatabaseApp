@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 
-
 /// Alertift
 /// make alert or action sheet.
-public final class Alertift {    
+public final class Alertift {
     /// private initializer
     private init() {}
-    
+
     /// Make alert
     ///
     /// - Parameters:

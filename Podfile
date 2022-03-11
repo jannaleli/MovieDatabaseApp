@@ -11,6 +11,7 @@ target 'MovieDatabaseApp' do
   pod 'Alertift', '~> 4.2'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Alamofire', '~> 5.5'
   target 'MovieDatabaseAppTests' do
     inherit! :search_paths
     # Pods for testing

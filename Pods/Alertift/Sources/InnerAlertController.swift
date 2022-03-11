@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-extension Alertift {
-    public enum ImageTopMargin {
+public extension Alertift {
+    enum ImageTopMargin {
         case none
         case belowRoundCorner
 
@@ -33,7 +33,7 @@ class InnerAlertController: UIAlertController {
     private(set) var originalMessage: String?
     private var spaceAdjustedMessage: String = ""
 
-    private var imageView: UIImageView? = nil
+    private var imageView: UIImageView?
     private var previousImgViewSize: CGSize = .zero
     private var imageTopMargin: Alertift.ImageTopMargin = .none
     override var title: String? {
@@ -57,7 +57,7 @@ class InnerAlertController: UIAlertController {
             title = " "
         }
         self.imageTopMargin = imageTopMargin
-        guard let imageView = self.imageView else {
+        guard let imageView = imageView else {
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
@@ -104,7 +104,6 @@ class InnerAlertController: UIAlertController {
     }
 
     private func adjustLabel(for imageView: UIImageView) {
-
         if let label = titleLabel {
             let lineCount = getLineCount(for: imageView, label: label)
             let lines = String(repeating: "\n", count: lineCount)
@@ -135,13 +134,11 @@ class InnerAlertController: UIAlertController {
         return lineCount
     }
 
-    private lazy var lineHeight: CGFloat = {
-        return titleLabel?.font.lineHeight ?? messageLabel?.font.lineHeight ?? 1.0
-    }()
+    private lazy var lineHeight: CGFloat = titleLabel?.font.lineHeight ?? messageLabel?.font.lineHeight ?? 1.0
 
     /// textFieldTextDidChangeHandler: ((UITextField, Int) -> Void)
     var textFieldTextDidChangeHandler: Alertift.Alert.TextFieldHandler?
-    
+
     public typealias FinallyHandler = (UIAlertAction, Int, [UITextField]?) -> Void
     var finallyHandler: FinallyHandler?
 
@@ -150,19 +147,18 @@ class InnerAlertController: UIAlertController {
     var messageTextColor: UIColor? = .black
     var titleTextAlignment: NSTextAlignment = .center
     var messageTextAlignment: NSTextAlignment = .center
-    
-    
+
     /// Register UITextFieldTextDidChange notification
     ///
     /// - Parameter textField: textField
     func registerTextFieldObserver(_ textField: UITextField) {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(self.textFieldDidChange(_:)),
+            selector: #selector(textFieldDidChange(_:)),
             name: UITextField.textDidChangeNotification, object: textField
         )
     }
-    
+
     /// Delegate method for UITextFieldTextDidChange
     ///
     /// - Parameter notification: notification (object is UITextField)
@@ -170,7 +166,7 @@ class InnerAlertController: UIAlertController {
         guard let textField = notification.object as? UITextField else {
             return
         }
-        
+
         guard let index = textFields?.firstIndex(of: textField) else {
             return
         }
@@ -186,37 +182,37 @@ class InnerAlertController: UIAlertController {
     var actionWithTextFieldsHandler: (UIAlertAction) -> (UIAlertAction, Int, [UITextField]?) {
         return { [weak self] action in (action, self?.actions.firstIndex(of: action) ?? -1, self?.textFields) }
     }
-    
+
     /// Returns finallyExecutor
     var finallyExecutor: (UIAlertAction) -> Void {
         return { [weak self] action in
             self?.finallyHandler?(action, self?.actions.firstIndex(of: action) ?? -1, self?.textFields)
         }
     }
-    
+
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+
         adaptBackgroundColor()
         updateTitleLabel()
         updateMessageLabel()
     }
-    
+
     private func adaptBackgroundColor() {
         mainView?.backgroundColor = alertBackgroundColor
         if preferredStyle == .actionSheet {
             if let cancelTitle = actions.filter({ $0.style == .cancel }).first?.title {
-                if let cancelButton = searchLabel(from: cancelTitle )?.superview?.superview {
+                if let cancelButton = searchLabel(from: cancelTitle)?.superview?.superview {
                     cancelButton.backgroundColor = alertBackgroundColor
                 }
             }
         }
     }
-    
+
     var titleLabel: UILabel? {
         return title.flatMap(searchLabel(from:))
     }
-    
+
     var messageLabel: UILabel? {
         return message.flatMap(searchLabel(from:))
     }
@@ -234,17 +230,17 @@ class InnerAlertController: UIAlertController {
             messageLabel.textAlignment = messageTextAlignment
         }
     }
-    
+
     private var mainView: UIView? {
         return view.subviews.first?.subviews.first?.subviews.first
     }
-    
+
     private func searchLabel(from text: String) -> UILabel? {
         return view.recursiveSubviews
-            .compactMap { $0 as? UILabel}
+            .compactMap { $0 as? UILabel }
             .first { $0.text == text }
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
         Debug.log()
@@ -252,8 +248,7 @@ class InnerAlertController: UIAlertController {
 }
 
 extension UIView {
-    
     var recursiveSubviews: [UIView] {
-        return subviews.reduce(subviews, { return $0 + $1.recursiveSubviews })
+        return subviews.reduce(subviews) { $0 + $1.recursiveSubviews }
     }
 }

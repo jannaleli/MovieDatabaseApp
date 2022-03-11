@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
-extension Alertift {
+public extension Alertift {
     /// ActionSheet
-    final public class ActionSheet: AlertType, _AlertType {
+    final class ActionSheet: AlertType, _AlertType {
         public typealias Handler = (UIAlertAction, Int) -> Void
 
         var _alertController: InnerAlertController!
         public var alertController: UIAlertController {
             return _alertController as UIAlertController
         }
-        
+
         public static var backgroundColor: UIColor?
         public static var buttonTextColor: UIColor?
         public static var titleTextColor: UIColor?
@@ -33,7 +33,7 @@ extension Alertift {
         public init(title: String? = nil, message: String? = nil) {
             buildAlertControlelr(title: title, message: message, style: .actionSheet)
         }
-        
+
         /// Add action to alertController
         public func action(_ action: Alertift.Action, handler: Handler?) -> Self {
             return self.action(action, image: nil, handler: handler)
@@ -43,12 +43,10 @@ extension Alertift {
             return self.action(action) { _, _ in handler?() }
         }
 
-
         /// Add action to alertController
         public func action(_ action: Alertift.Action, image: UIImage?, renderingMode: UIImage.RenderingMode = .automatic, handler: Handler?) -> Self {
             let alertAction = buildAlertAction(action, handler:
-                merge(_alertController.actionHandler, handler ?? { (_, _) in })
-            )
+                merge(_alertController.actionHandler, handler ?? { _, _ in }))
 
             if let image = image {
                 alertAction.setValue(image.withRenderingMode(renderingMode), forKey: "image")
@@ -61,7 +59,7 @@ extension Alertift {
         public func action(_ action: Alertift.Action, image: UIImage?, renderingMode: UIImage.RenderingMode = .automatic, handler: ShortHandler? = nil) -> Self {
             return self.action(action, image: image, renderingMode: renderingMode) { _, _ in handler?() }
         }
-                
+
         /// Add sourceView and sourceRect to **popoverPresentationController**.
         ///
         /// If you want to use action sheet on iPad, you have to use this method.
@@ -87,7 +85,6 @@ extension Alertift {
             return self
         }
 
-
         /// Add barButtonItem to **popoverPresentationController**.
         ///
         /// If you want to use action sheet on iPad, you have to use this method.
@@ -98,9 +95,9 @@ extension Alertift {
             _alertController.popoverPresentationController?.barButtonItem = barButtonItem
             return self
         }
-        
+
         func convertFinallyHandler(_ handler: Any) -> InnerAlertController.FinallyHandler {
-            return { (action, index, _) in  (handler as? Handler)?(action, index) }
+            return { action, index, _ in (handler as? Handler)?(action, index) }
         }
 
         public func image(_ image: UIImage?, imageTopMargin: Alertift.ImageTopMargin = .none) -> Self {

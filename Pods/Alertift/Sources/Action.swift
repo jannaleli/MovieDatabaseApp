@@ -9,41 +9,41 @@
 import Foundation
 import UIKit
 
-extension Alertift {
+public extension Alertift {
     /// Action type for **Alert**, **ActionSheet**
     ///
     /// - `default`: Default action(action title)
     /// - destructive: Destructive action(action title)
     /// - cancel: Cancel description(action title)
-    public enum Action {
+    enum Action {
         typealias Handler = (UIAlertAction) -> Void
-        
+
         case `default`(String?)
         case destructive(String?)
         case cancel(String?)
-        
+
         init(title: String?) {
             self = .default(title)
         }
-        
+
         /// **UIAlertAction**'s title
         private var title: String? {
             switch self {
-            case .default(let title): return title
-            case .destructive(let title): return title
-            case .cancel(let title): return title
+            case let .default(title): return title
+            case let .destructive(title): return title
+            case let .cancel(title): return title
             }
         }
-        
+
         /// **UIAlertAction**'s style
         private var style: UIAlertAction.Style {
             switch self {
-            case .default( _): return .default
-            case .destructive( _): return .destructive
-            case .cancel( _): return .cancel
+            case .default: return .default
+            case .destructive: return .destructive
+            case .cancel: return .cancel
             }
         }
-        
+
         /// **Build UIAlertAction**
         ///
         /// - Parameter actionHandler: Action handler for **UIAlertAction**
