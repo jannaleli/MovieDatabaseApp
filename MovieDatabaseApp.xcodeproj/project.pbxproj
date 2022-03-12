@@ -250,6 +250,7 @@
 		1077214D27D2B97B005B63F5 /* MovieDatabaseApp */ = {
 			isa = PBXGroup;
 			children = (
+				107B5F7727DCD9CD00C069F8 /* Plist */,
 				10C56C3E27DA886900911437 /* App */,
 				10C56C3A27DA859100911437 /* Shared */,
 				AB6C744127D507EB0089105D /* Utils */,
@@ -281,6 +282,13 @@
 				1077217127D2B97D005B63F5 /* MovieDatabaseAppUITestsLaunchTests.swift */,
 			);
 			path = MovieDatabaseAppUITests;
+			sourceTree = "<group>";
+		};
+		107B5F7727DCD9CD00C069F8 /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Plist;
 			sourceTree = "<group>";
 		};
 		10C56C2A27D936D000911437 /* Collection View */ = {

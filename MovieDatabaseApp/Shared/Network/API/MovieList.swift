@@ -12,7 +12,7 @@ import SwiftyJSON
 class MovieListAPI: RestClient {
     enum MovieListRoute: URLRequestConvertible {
         static var baseURL = APIConstants.BASE_URL
-        static let getMoviesURL = "discover/movie?api_key=b7267083305bc71010c161d810acf96e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+        static let getMoviesURL = "discover/movie?api_key=\(APIConstants.API_KEY)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
 
         case getMovies
 
