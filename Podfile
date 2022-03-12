@@ -12,7 +12,6 @@ target 'MovieDatabaseApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Alamofire', '~> 5.5'
-  pod 'SwiftyJSON', '~> 4.0'
   target 'MovieDatabaseAppTests' do
     inherit! :search_paths
     # Pods for testing

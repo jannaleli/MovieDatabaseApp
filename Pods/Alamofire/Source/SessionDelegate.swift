@@ -44,7 +44,7 @@ open class SessionDelegate: NSObject {
     /// - Parameters:
     ///   - task: The `URLSessionTask` for which to find the associated `Request`.
     ///   - type: The `Request` subclass type to cast any `Request` associate with `task`.
-    func request<R: Request>(for task: URLSessionTask, as _: R.Type) -> R? {
+    func request<R: Request>(for task: URLSessionTask, as type: R.Type) -> R? {
         guard let provider = stateProvider else {
             assertionFailure("StateProvider is nil.")
             return nil
@@ -86,8 +86,7 @@ extension SessionDelegate: URLSessionTaskDelegate {
     open func urlSession(_ session: URLSession,
                          task: URLSessionTask,
                          didReceive challenge: URLAuthenticationChallenge,
-                         completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
-    {
+                         completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         eventMonitor?.urlSession(session, task: task, didReceive: challenge)
 
         let evaluation: ChallengeEvaluation
@@ -96,10 +95,10 @@ extension SessionDelegate: URLSessionTaskDelegate {
              NSURLAuthenticationMethodNegotiate:
             evaluation = attemptCredentialAuthentication(for: challenge, belongingTo: task)
         #if !(os(Linux) || os(Windows))
-            case NSURLAuthenticationMethodServerTrust:
-                evaluation = attemptServerTrustAuthentication(with: challenge)
-            case NSURLAuthenticationMethodClientCertificate:
-                evaluation = attemptCredentialAuthentication(for: challenge, belongingTo: task)
+        case NSURLAuthenticationMethodServerTrust:
+            evaluation = attemptServerTrustAuthentication(with: challenge)
+        case NSURLAuthenticationMethodClientCertificate:
+            evaluation = attemptCredentialAuthentication(for: challenge, belongingTo: task)
         #endif
         default:
             evaluation = (.performDefaultHandling, nil, nil)
@@ -113,32 +112,32 @@ extension SessionDelegate: URLSessionTaskDelegate {
     }
 
     #if !(os(Linux) || os(Windows))
-        /// Evaluates the server trust `URLAuthenticationChallenge` received.
-        ///
-        /// - Parameter challenge: The `URLAuthenticationChallenge`.
-        ///
-        /// - Returns:             The `ChallengeEvaluation`.
-        func attemptServerTrustAuthentication(with challenge: URLAuthenticationChallenge) -> ChallengeEvaluation {
-            let host = challenge.protectionSpace.host
+    /// Evaluates the server trust `URLAuthenticationChallenge` received.
+    ///
+    /// - Parameter challenge: The `URLAuthenticationChallenge`.
+    ///
+    /// - Returns:             The `ChallengeEvaluation`.
+    func attemptServerTrustAuthentication(with challenge: URLAuthenticationChallenge) -> ChallengeEvaluation {
+        let host = challenge.protectionSpace.host
 
-            guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
-                  let trust = challenge.protectionSpace.serverTrust
-            else {
+        guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
+              let trust = challenge.protectionSpace.serverTrust
+        else {
+            return (.performDefaultHandling, nil, nil)
+        }
+
+        do {
+            guard let evaluator = try stateProvider?.serverTrustManager?.serverTrustEvaluator(forHost: host) else {
                 return (.performDefaultHandling, nil, nil)
             }
 
-            do {
-                guard let evaluator = try stateProvider?.serverTrustManager?.serverTrustEvaluator(forHost: host) else {
-                    return (.performDefaultHandling, nil, nil)
-                }
+            try evaluator.evaluate(trust, forHost: host)
 
-                try evaluator.evaluate(trust, forHost: host)
-
-                return (.useCredential, URLCredential(trust: trust), nil)
-            } catch {
-                return (.cancelAuthenticationChallenge, nil, error.asAFError(or: .serverTrustEvaluationFailed(reason: .customEvaluationFailed(error: error))))
-            }
+            return (.useCredential, URLCredential(trust: trust), nil)
+        } catch {
+            return (.cancelAuthenticationChallenge, nil, error.asAFError(or: .serverTrustEvaluationFailed(reason: .customEvaluationFailed(error: error))))
         }
+    }
     #endif
 
     /// Evaluates the credential-based authentication `URLAuthenticationChallenge` received for `task`.
@@ -149,8 +148,7 @@ extension SessionDelegate: URLSessionTaskDelegate {
     ///
     /// - Returns:     The `ChallengeEvaluation`.
     func attemptCredentialAuthentication(for challenge: URLAuthenticationChallenge,
-                                         belongingTo task: URLSessionTask) -> ChallengeEvaluation
-    {
+                                         belongingTo task: URLSessionTask) -> ChallengeEvaluation {
         guard challenge.previousFailureCount == 0 else {
             return (.rejectProtectionSpace, nil, nil)
         }
@@ -166,8 +164,7 @@ extension SessionDelegate: URLSessionTaskDelegate {
                          task: URLSessionTask,
                          didSendBodyData bytesSent: Int64,
                          totalBytesSent: Int64,
-                         totalBytesExpectedToSend: Int64)
-    {
+                         totalBytesExpectedToSend: Int64) {
         eventMonitor?.urlSession(session,
                                  task: task,
                                  didSendBodyData: bytesSent,
@@ -180,8 +177,7 @@ extension SessionDelegate: URLSessionTaskDelegate {
 
     open func urlSession(_ session: URLSession,
                          task: URLSessionTask,
-                         needNewBodyStream completionHandler: @escaping (InputStream?) -> Void)
-    {
+                         needNewBodyStream completionHandler: @escaping (InputStream?) -> Void) {
         eventMonitor?.urlSession(session, taskNeedsNewBodyStream: task)
 
         guard let request = request(for: task, as: UploadRequest.self) else {
@@ -197,8 +193,7 @@ extension SessionDelegate: URLSessionTaskDelegate {
                          task: URLSessionTask,
                          willPerformHTTPRedirection response: HTTPURLResponse,
                          newRequest request: URLRequest,
-                         completionHandler: @escaping (URLRequest?) -> Void)
-    {
+                         completionHandler: @escaping (URLRequest?) -> Void) {
         eventMonitor?.urlSession(session, task: task, willPerformHTTPRedirection: response, newRequest: request)
 
         if let redirectHandler = stateProvider?.request(for: task)?.redirectHandler ?? stateProvider?.redirectHandler {
@@ -251,8 +246,7 @@ extension SessionDelegate: URLSessionDataDelegate {
     open func urlSession(_ session: URLSession,
                          dataTask: URLSessionDataTask,
                          willCacheResponse proposedResponse: CachedURLResponse,
-                         completionHandler: @escaping (CachedURLResponse?) -> Void)
-    {
+                         completionHandler: @escaping (CachedURLResponse?) -> Void) {
         eventMonitor?.urlSession(session, dataTask: dataTask, willCacheResponse: proposedResponse)
 
         if let handler = stateProvider?.request(for: dataTask)?.cachedResponseHandler ?? stateProvider?.cachedResponseHandler {
@@ -269,8 +263,7 @@ extension SessionDelegate: URLSessionDownloadDelegate {
     open func urlSession(_ session: URLSession,
                          downloadTask: URLSessionDownloadTask,
                          didResumeAtOffset fileOffset: Int64,
-                         expectedTotalBytes: Int64)
-    {
+                         expectedTotalBytes: Int64) {
         eventMonitor?.urlSession(session,
                                  downloadTask: downloadTask,
                                  didResumeAtOffset: fileOffset,
@@ -288,8 +281,7 @@ extension SessionDelegate: URLSessionDownloadDelegate {
                          downloadTask: URLSessionDownloadTask,
                          didWriteData bytesWritten: Int64,
                          totalBytesWritten: Int64,
-                         totalBytesExpectedToWrite: Int64)
-    {
+                         totalBytesExpectedToWrite: Int64) {
         eventMonitor?.urlSession(session,
                                  downloadTask: downloadTask,
                                  didWriteData: bytesWritten,
