@@ -12,7 +12,8 @@ import SwiftyJSON
 class MovieListAPI: RestClient {
     enum MovieListRoute: URLRequestConvertible {
         static var baseURL = APIConstants.BASE_URL
-        static let getMoviesURL = "discover/movie?api_key=\(APIConstants.API_KEY)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+        static let API_KEY = APIConstants.API_KEY!
+        static let getMoviesURL = "discover/movie?api_key=\(API_KEY)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
 
         case getMovies
 
@@ -55,8 +56,7 @@ class MovieListAPI: RestClient {
                     completionBlock(nil, NSError(domain: APIConstants.DOMAIN, code: 0, userInfo: nil))
                     return
                 }
-
-                print(response)
+                print(data["page"])
 
         })
     }

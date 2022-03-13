@@ -21,6 +21,9 @@ class SplashViewController: UIViewController {
     }
 
     override func loadView() {
+        MovieListAPI().getMovies(completionBlock: {
+            _, _ in
+        })
         splashView.delegate = self
         view = splashView
     }

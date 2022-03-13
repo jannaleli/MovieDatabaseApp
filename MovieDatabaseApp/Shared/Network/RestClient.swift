@@ -14,12 +14,14 @@ typealias CompletionBlock = (_ result: AnyObject?, _ error: NSError?) -> Void
 class RestClient {
     // MARK: Send Request to TMDB API
 
-    func sendRequest(_ route: URLRequestConvertible, completionBlock _: @escaping ServerCompletionBlock) {
+    func sendRequest(_ route: URLRequestConvertible, completionBlock completionBlock: @escaping ServerCompletionBlock) {
         let request = AF.request(route, interceptor: nil)
 
         request.responseJSON(completionHandler: {
-            result in
-            print(result)
+            response in
+            print(response.result)
+            let restResponse: RestResponse = .init(dataFromNetwork: response.result as AnyObject)
+            completionBlock(restResponse, nil)
         })
     }
 }

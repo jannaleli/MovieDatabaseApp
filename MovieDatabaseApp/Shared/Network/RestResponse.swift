@@ -15,7 +15,7 @@ class RestResponse {
     var error: NSError?
 
     init(dataFromNetwork: AnyObject) {
-        var data = JSON(dataFromNetwork)
+        let data = JSON(dataFromNetwork)
         let status: Int = data["status"].intValue
 
         switch status {

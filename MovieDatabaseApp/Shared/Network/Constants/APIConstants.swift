@@ -19,7 +19,7 @@ struct APIConstants {
     static let INTERNET_NOT_AVAILABLE = 109
     static let DOMAIN = "api.themoviedb.org"
     static let API_READ_KEY_ACCESS_TOKEN: String? = {
-        if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
+        if let path = Bundle.main.path(forResource: "API", ofType: "plist"),
            let myDict = NSDictionary(contentsOfFile: path)
         {
             return myDict["API_READ_KEY_ACCESS_TOKEN"].debugDescription
@@ -28,11 +28,15 @@ struct APIConstants {
     }()
 
     static let API_KEY: String? = {
-        if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
+        if let path = Bundle.main.path(forResource: "API", ofType: "plist"),
            let myDict = NSDictionary(contentsOfFile: path)
         {
-            return myDict["API_KEY"].debugDescription
+            print(myDict["API_KEY"]!)
+            let api_key = myDict["API_KEY"]!
+            print(api_key)
+            return api_key as! String
         }
         return nil
+
     }()
 }
