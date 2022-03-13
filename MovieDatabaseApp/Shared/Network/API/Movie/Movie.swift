@@ -56,7 +56,17 @@ class MovieListAPI: RestClient {
                     completionBlock(nil, NSError(domain: APIConstants.DOMAIN, code: 0, userInfo: nil))
                     return
                 }
-                print(data["page"])
+                // TODO: Pick the model here
+
+                let decoder = JSONDecoder()
+                let movieArray = data["results"].arrayValue
+                var transformedArray: [MovieItem] = []
+
+                for each in movieArray {
+                    let sameEmployee = try! decoder.decode(MovieItem.self, from: each.rawData())
+                    transformedArray.append(sameEmployee)
+                }
+                completionBlock(transformedArray as AnyObject, nil)
 
         })
     }

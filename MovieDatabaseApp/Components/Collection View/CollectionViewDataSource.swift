@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 final class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
-    var objects = [String]()
+    var objects = [MovieItem]()
 
-    init(dataSrc: [String]) {
+    init(dataSrc: [MovieItem]) {
         objects = dataSrc
     }
 
@@ -25,7 +25,7 @@ final class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         let movie = objects[indexPath.row]
         print(movie)
-        cell.setup(with: movie)
+        cell.setup(with: movie.original_title, and: movie.poster_path)
         cell.contentView.backgroundColor = .red
 
         return cell

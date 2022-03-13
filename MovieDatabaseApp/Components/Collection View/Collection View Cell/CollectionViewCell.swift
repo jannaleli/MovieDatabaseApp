@@ -19,8 +19,18 @@ final class MovieCell: UICollectionViewCell {
         return label
     }()
 
-    func setup(with title: String) {
+    var posterImage: UIImage = .init()
+    var posterImageView: UIImageView = .init()
+
+    func setup(with title: String, and poster: String) {
         textLabel.text = title
+        let url = "https://image.tmdb.org/t/p/w154\(poster)"
+        if let theProfileImageUrl = URL(string: "https://image.tmdb.org/t/p/w154\(poster)") {
+            if let imageData = NSData(contentsOf: theProfileImageUrl as URL) {
+                posterImage = UIImage(data: (imageData as? Data)!)!
+                posterImageView.image = posterImage
+            }
+        }
     }
 
     override init(frame _: CGRect) {
@@ -34,6 +44,7 @@ final class MovieCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 3
 
         contentView.addSubview(textLabel)
+        contentView.addSubview(posterImageView)
     }
 
     private func setupLayouts() {
@@ -44,6 +55,16 @@ final class MovieCell: UICollectionViewCell {
             textLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             textLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+
+        ])
+
+        posterImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        // Layout constraints for `profileImageView`
+        NSLayoutConstraint.activate([
+            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
 
         ])
     }

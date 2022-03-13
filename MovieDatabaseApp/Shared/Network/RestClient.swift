@@ -17,11 +17,25 @@ class RestClient {
     func sendRequest(_ route: URLRequestConvertible, completionBlock completionBlock: @escaping ServerCompletionBlock) {
         let request = AF.request(route, interceptor: nil)
 
-        request.responseJSON(completionHandler: {
-            response in
-            print(response.result)
-            let restResponse: RestResponse = .init(dataFromNetwork: response.result as AnyObject)
-            completionBlock(restResponse, nil)
-        })
+        request.responseData { response in
+            switch response.result {
+            case let .success(value):
+                print(String(data: value, encoding: .utf8)!)
+
+                let restResponse: RestResponse = .init(dataFromNetwork: value)
+                completionBlock(restResponse, nil)
+            case let .failure(error):
+                print(error)
+                completionBlock(nil, error as NSError)
+            }
+        }
+
+//        request.responseJSON(completionHandler: {
+//            response in
+//            print(response.result)
+//            let restResponse: RestResponse = .init(dataFromNetwork: response.result)
+//
+//            completionBlock(restResponse, nil)
+//        })
     }
 }
