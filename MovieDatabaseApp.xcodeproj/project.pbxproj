@@ -17,6 +17,11 @@
 		1077216627D2B97D005B63F5 /* MovieDatabaseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1077216527D2B97D005B63F5 /* MovieDatabaseAppTests.swift */; };
 		1077217027D2B97D005B63F5 /* MovieDatabaseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1077216F27D2B97D005B63F5 /* MovieDatabaseAppUITests.swift */; };
 		1077217227D2B97D005B63F5 /* MovieDatabaseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1077217127D2B97D005B63F5 /* MovieDatabaseAppUITestsLaunchTests.swift */; };
+		107B5F7927DE17A100C069F8 /* API.plist in Resources */ = {isa = PBXBuildFile; fileRef = 107B5F7827DE17A100C069F8 /* API.plist */; };
+		107B5F8627DE19E700C069F8 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107B5F8527DE19E700C069F8 /* RestClient.swift */; };
+		107B5F8827DE19F400C069F8 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107B5F8727DE19F400C069F8 /* RestResponse.swift */; };
+		107B5F8B27DE1A1700C069F8 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107B5F8A27DE1A1700C069F8 /* Movie.swift */; };
+		107B5F8E27DE1A7E00C069F8 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107B5F8D27DE1A7E00C069F8 /* APIConstants.swift */; };
 		10C56C2C27D936E900911437 /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C2B27D936E900911437 /* CollectionViewDelegate.swift */; };
 		10C56C2E27D936F700911437 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C2D27D936F700911437 /* CollectionViewDataSource.swift */; };
 		10C56C3027D9370100911437 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C2F27D9370100911437 /* CollectionView.swift */; };
@@ -84,6 +89,11 @@
 		1077216B27D2B97D005B63F5 /* MovieDatabaseAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieDatabaseAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1077216F27D2B97D005B63F5 /* MovieDatabaseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDatabaseAppUITests.swift; sourceTree = "<group>"; };
 		1077217127D2B97D005B63F5 /* MovieDatabaseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDatabaseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		107B5F7827DE17A100C069F8 /* API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = API.plist; sourceTree = "<group>"; };
+		107B5F8527DE19E700C069F8 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		107B5F8727DE19F400C069F8 /* RestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestResponse.swift; sourceTree = "<group>"; };
+		107B5F8A27DE1A1700C069F8 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		107B5F8D27DE1A7E00C069F8 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		10C56C2B27D936E900911437 /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
 		10C56C2D27D936F700911437 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		10C56C2F27D9370100911437 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
@@ -252,8 +262,36 @@
 		107B5F7727DCD9CD00C069F8 /* Plist */ = {
 			isa = PBXGroup;
 			children = (
+				107B5F7827DE17A100C069F8 /* API.plist */,
 			);
 			path = Plist;
+			sourceTree = "<group>";
+		};
+		107B5F8427DE19D500C069F8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				107B5F8C27DE1A6A00C069F8 /* Constants */,
+				107B5F8927DE19FA00C069F8 /* API */,
+				107B5F8527DE19E700C069F8 /* RestClient.swift */,
+				107B5F8727DE19F400C069F8 /* RestResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		107B5F8927DE19FA00C069F8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				107B5F8A27DE1A1700C069F8 /* Movie.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		107B5F8C27DE1A6A00C069F8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				107B5F8D27DE1A7E00C069F8 /* APIConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		10C56C2A27D936D000911437 /* Collection View */ = {
@@ -287,6 +325,7 @@
 		10C56C3A27DA859100911437 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				107B5F8427DE19D500C069F8 /* Network */,
 				10C56C4527DAA69700911437 /* Constants */,
 				10C56C3F27DA8A9000911437 /* Utilities */,
 				10C56C3B27DA85FA00911437 /* Firebase */,
@@ -550,6 +589,7 @@
 				10E4570B27D2CA64006507EF /* GoogleService-Info.plist in Resources */,
 				1077215827D2B97C005B63F5 /* Assets.xcassets in Resources */,
 				1077215627D2B97B005B63F5 /* Main.storyboard in Resources */,
+				107B5F7927DE17A100C069F8 /* API.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +737,7 @@
 			files = (
 				10C56C2C27D936E900911437 /* CollectionViewDelegate.swift in Sources */,
 				10C56C4427DA8DEF00911437 /* RegisterViewModel.swift in Sources */,
+				107B5F8B27DE1A1700C069F8 /* Movie.swift in Sources */,
 				ABA7D8B027D39C9300B39566 /* RegisterView.swift in Sources */,
 				AB6C744627D522790089105D /* StackView.swift in Sources */,
 				1077215327D2B97B005B63F5 /* ViewController.swift in Sources */,
@@ -712,6 +753,7 @@
 				ABA958F927D3F9DE00E8A45D /* TableDataSource.swift in Sources */,
 				ABA7D8B227D3A38A00B39566 /* Coodinator.swift in Sources */,
 				1077215127D2B97B005B63F5 /* SceneDelegate.swift in Sources */,
+				107B5F8E27DE1A7E00C069F8 /* APIConstants.swift in Sources */,
 				ABA7D8BA27D3A42900B39566 /* MainCoordinator.swift in Sources */,
 				ABA7D8A627D39C5700B39566 /* RegisterViewController.swift in Sources */,
 				10C56C3027D9370100911437 /* CollectionView.swift in Sources */,
@@ -719,10 +761,12 @@
 				ABA7D8A427D39C2100B39566 /* LoginViewController.swift in Sources */,
 				10C56C3627DA2B2400911437 /* DetailView.swift in Sources */,
 				AB6C744327D507F70089105D /* AutoLayout.swift in Sources */,
+				107B5F8827DE19F400C069F8 /* RestResponse.swift in Sources */,
 				ABA7D8A827D39C6A00B39566 /* SplashViewController.swift in Sources */,
 				10C56C2E27D936F700911437 /* CollectionViewDataSource.swift in Sources */,
 				10C56C3D27DA861100911437 /* FirebaseServices.swift in Sources */,
 				ABA7D8AE27D39C8700B39566 /* LoginView.swift in Sources */,
+				107B5F8627DE19E700C069F8 /* RestClient.swift in Sources */,
 				ABA7D8A227D39BF900B39566 /* HomeViewController.swift in Sources */,
 				101FBF7627D7B3B200E44450 /* AuthCoordinator.swift in Sources */,
 				10C56C4727DAA6C300911437 /* TextFieldType.swift in Sources */,
