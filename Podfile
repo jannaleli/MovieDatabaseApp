@@ -6,6 +6,8 @@ target 'MovieDatabaseApp' do
   use_frameworks!
 
   # Pods for MovieDatabaseApp
+  pod 'CLTypingLabel'
+  pod 'SwiftFormat/CLI', '~> 0.49'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   target 'MovieDatabaseAppTests' do
