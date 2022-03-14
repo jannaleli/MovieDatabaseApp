@@ -6,8 +6,13 @@ target 'MovieDatabaseApp' do
   use_frameworks!
 
   # Pods for MovieDatabaseApp
+  pod 'CLTypingLabel'
+  pod 'SwiftFormat/CLI', '~> 0.49'
+  pod 'Alertift', '~> 4.2'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Alamofire', '~> 5.5'
+  pod 'SwiftyJSON', '~> 4.0'
   target 'MovieDatabaseAppTests' do
     inherit! :search_paths
     # Pods for testing
