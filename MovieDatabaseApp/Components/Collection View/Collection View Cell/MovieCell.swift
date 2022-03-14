@@ -24,10 +24,10 @@ final class MovieCell: UICollectionViewCell {
 
     func setup(with title: String, and poster: String) {
         textLabel.text = title
-        let url = "https://image.tmdb.org/t/p/w154\(poster)"
-        if let theProfileImageUrl = URL(string: "https://image.tmdb.org/t/p/w154\(poster)") {
+        let url = poster
+        if let theProfileImageUrl = URL(string: url) {
             if let imageData = NSData(contentsOf: theProfileImageUrl as URL) {
-                posterImage = UIImage(data: (imageData as? Data)!)!
+                posterImage = UIImage(data: imageData as Data)!
                 posterImageView.image = posterImage
             }
         }

@@ -19,7 +19,7 @@ class HomeView: UIView {
 
     // MARK: - Private Properties
 
-    private var sampleData: [MovieItem] = []
+    private var sampleData: [HomeViewModel] = []
 
     private var dataSource: CollectionViewDataSource?
 
@@ -36,29 +36,25 @@ class HomeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGeneralConfigurations()
-        setUpData()
+        createSubviews()
+        setUpConstraints()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setGeneralConfigurations()
-        setUpData()
+        createSubviews()
+        setUpConstraints()
     }
 
     // MARK: - Methods
 
-    private func setGeneralConfigurations() {
-        backgroundColor = .white
+    func configure(with homeVM: [HomeViewModel]) {
+        sampleData = homeVM
     }
 
-    private func setUpData() {
-        MovieListAPI().getMovies(completionBlock: {
-            result, _ in
-
-            self.sampleData = result as! [MovieItem]
-            self.createSubviews()
-            self.setUpConstraints()
-        })
+    private func setGeneralConfigurations() {
+        backgroundColor = .white
     }
 
     private func createSubviews() {
