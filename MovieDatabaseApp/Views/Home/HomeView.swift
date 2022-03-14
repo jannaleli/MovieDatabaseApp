@@ -51,6 +51,7 @@ class HomeView: UIView {
 
     func configure(with homeVM: [HomeViewModel]) {
         sampleData = homeVM
+        createSubviews()
     }
 
     private func setGeneralConfigurations() {
@@ -59,6 +60,7 @@ class HomeView: UIView {
 
     private func createSubviews() {
         dataSource = CollectionViewDataSource(dataSrc: sampleData)
+        print(sampleData)
         collectionDelegate = CollectionViewDelegate()
         collectionView.dataSource = dataSource
         collectionView.delegate = collectionDelegate

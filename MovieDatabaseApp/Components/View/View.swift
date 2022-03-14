@@ -36,12 +36,14 @@ extension UIView {
         switch textFieldType {
         case .username:
             textField.placeholder = "Username"
+            textField.autocapitalizationType = .none
         case .password:
             textField.placeholder = "Password"
             textField.isSecureTextEntry = true
         }
 
         textField.backgroundColor = .white
+        textField.autocapitalizationType = .none
         textField.borderStyle = .roundedRect
 
         return textField

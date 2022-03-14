@@ -23,16 +23,18 @@ class HomeViewController: UIViewController {
 
     // MARK: - Override
 
+    override func viewDidLoad() {}
+
     override func loadView() {
-        MovieListAPI().getMovies(completionBlock: {
+        MovieListAPI().getMovies(completionBlock: { [self]
             result, _ in
             // This is where we will load ViewModel after calling the MovieListAPI
             if let data = result as? [MovieItem] {
-                self.sampleData = data.map { HomeViewModel(movie: $0) }
+                sampleData = data.map { HomeViewModel(movie: $0) }
             }
+            homeView.configure(with: sampleData)
 
         })
-
         homeView.delegate = self
         homeView.configure(with: sampleData)
         view = homeView
