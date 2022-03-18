@@ -28,7 +28,8 @@ final class MainCoordinator: Coordinator {
     // MARK: - Public Methods
 
     func start() {
-        let homeViewController = HomeViewController()
+        let viewModel = MovieViewModel()
+        let homeViewController = HomeViewController(movieViewModel: viewModel)
         homeViewController.delegate = self
         navigationController?.viewControllers = [homeViewController]
     }

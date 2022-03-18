@@ -37,7 +37,7 @@ class MovieListAPI: RestClient {
         }
 
         func asURLRequest() throws -> URLRequest {
-            let url = try URL(string: (MovieListRoute.baseURL + path).removingPercentEncoding!)
+            let url = try! URL(string: (MovieListRoute.baseURL + path).removingPercentEncoding!)
             var request = URLRequest(url: url!)
             request.httpMethod = method.rawValue
             request.timeoutInterval = TimeInterval(10 * 1000)

@@ -15,7 +15,7 @@ protocol ReusableView: AnyObject {
 final class MovieCell: UICollectionViewCell {
     let textLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
 
@@ -43,21 +43,11 @@ final class MovieCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 3
 
-        contentView.addSubview(textLabel)
         contentView.addSubview(posterImageView)
+        contentView.addSubview(textLabel)
     }
 
     private func setupLayouts() {
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        // Layout constraints for `profileImageView`
-        NSLayoutConstraint.activate([
-            textLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            textLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-
-        ])
-
         posterImageView.translatesAutoresizingMaskIntoConstraints = false
 
         // Layout constraints for `profileImageView`
@@ -65,6 +55,18 @@ final class MovieCell: UICollectionViewCell {
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            posterImageView.bottomAnchor.constraint(equalTo: textLabel.topAnchor),
+
+        ])
+
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        // Layout constraints for `profileImageView`
+        NSLayoutConstraint.activate([
+            textLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            textLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            textLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor),
 
         ])
     }

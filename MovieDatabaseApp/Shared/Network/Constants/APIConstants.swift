@@ -31,10 +31,11 @@ struct APIConstants {
         if let path = Bundle.main.path(forResource: "API", ofType: "plist"),
            let myDict = NSDictionary(contentsOfFile: path)
         {
-            print(myDict["API_KEY"]!)
             let api_key = myDict["API_KEY"]!
-            print(api_key)
-            return api_key as! String
+            if let apiKey = api_key as? String {
+                return apiKey
+            }
+            return nil
         }
         return nil
 

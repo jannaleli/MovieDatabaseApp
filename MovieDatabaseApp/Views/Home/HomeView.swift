@@ -12,24 +12,73 @@ protocol HomeViewDelegate: AnyObject {
     func cellSelected()
 }
 
-class HomeView: UIView {
+private enum LayoutConstant {
+    static let spacing: CGFloat = 16.0
+    static let itemHeight: CGFloat = 300.0
+}
+
+final class HomeView: UIView {
+    static let sectionHeaderElementKind = "section-header-element-kind"
+
+    // MARK: - Value Types
+
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, MovieItemCellViewModel>
+
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MovieItemCellViewModel>
+
     // MARK: - Public Properties
 
     weak var delegate: HomeViewDelegate?
 
     // MARK: - Private Properties
 
-    private var sampleData: [HomeViewModel] = []
+    private var popularMovies: [MovieItemCellViewModel] = []
 
-    private var dataSource: CollectionViewDataSource?
-
-    private var collectionDelegate: CollectionViewDelegate?
+    private var upcomingMovies: [MovieItemCellViewModel] = []
 
     private lazy var collectionView: UICollectionView = makeCollectionView()
 
     private lazy var titleLabel: UILabel = makeTitleLabel()
 
     private lazy var stackView: UIStackView = makeStackView()
+
+    private var sections = Section.allSections
+
+    private lazy var dataSource = makeDataSource()
+
+    // MARK: - Functions
+
+    func makeDataSource() -> DataSource {
+        // 1
+        let dataSource = DataSource(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, movie ->
+                UICollectionViewCell? in
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifier, for: indexPath) as! MovieCell
+
+                let movie = movie
+                print(movie)
+                cell.setup(with: movie.originalTitle, and: movie.posterImageUrl)
+
+                return cell
+            }
+        )
+//        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+//            guard kind == UICollectionView.elementKindSectionHeader else {
+//                return nil
+//            }
+//            let section = self.dataSource.snapshot()
+//                .sectionIdentifiers[indexPath.section]
+//            let view = collectionView.dequeueReusableSupplementaryView(
+//                ofKind: kind,
+//                withReuseIdentifier: SectionHeaderReusableView.reuseIdentifier,
+//                for: indexPath
+//            ) as? SectionHeaderReusableView
+//            view?.titleLabel.text = section.title
+//            return view
+//        }
+        return dataSource
+    }
 
     // MARK: - Initialization
 
@@ -38,6 +87,7 @@ class HomeView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        applySnapshot()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -45,13 +95,17 @@ class HomeView: UIView {
         setGeneralConfigurations()
         createSubviews()
         setUpConstraints()
+        applySnapshot()
     }
 
     // MARK: - Methods
 
-    func configure(with homeVM: [HomeViewModel]) {
-        sampleData = homeVM
+    // TODO: Can be renamed to bind
+    func configure(with popularMovies: [MovieItemCellViewModel], and upcomingMovies: [MovieItemCellViewModel]) {
+        self.popularMovies = popularMovies
+        self.upcomingMovies = upcomingMovies
         createSubviews()
+        applySnapshot()
     }
 
     private func setGeneralConfigurations() {
@@ -59,13 +113,7 @@ class HomeView: UIView {
     }
 
     private func createSubviews() {
-        dataSource = CollectionViewDataSource(dataSrc: sampleData)
-        print(sampleData)
-        collectionDelegate = CollectionViewDelegate()
-        collectionView.dataSource = dataSource
-        collectionView.delegate = collectionDelegate
-        let collectionViewDelegate = collectionView.delegate as! CollectionViewDelegate
-        collectionViewDelegate.delegate = self
+        collectionView.delegate = self
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.identifier)
         collectionView.reloadData()
         addSubview(stackView)
@@ -92,14 +140,33 @@ class HomeView: UIView {
     @objc func handleCellTapped() {
         delegate?.cellSelected()
     }
+
+    // 1
+    func applySnapshot(animatingDifferences: Bool = true) {
+        // 2
+
+        let snapshot = generateSnapshot()
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
 }
 
 // MARK: - Factory
 
 extension HomeView {
+    private func generateSnapshot() -> Snapshot {
+        var snapshot = Snapshot()
+        snapshot.appendSections([Section(title: "Popular Movies")])
+        snapshot.appendItems(popularMovies)
+
+        snapshot.appendSections([Section(title: "Popular TV Show")])
+        snapshot.appendItems(upcomingMovies)
+        // 4
+
+        return snapshot
+    }
+
     func makeCollectionView() -> UICollectionView {
-        let viewLayout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: generateLayout())
         collectionView.backgroundColor = .white
         return collectionView
     }
@@ -110,8 +177,9 @@ extension HomeView {
         stack.spacing = 20.0
         stack.alignment = .fill
         stack.distribution = .fill
-        [titleLabel,
-         collectionView].forEach { stack.addArrangedSubview($0) }
+        [
+            collectionView,
+        ].forEach { stack.addArrangedSubview($0) }
         return stack
     }
 
@@ -126,10 +194,119 @@ extension HomeView {
 
         return titleLabel
     }
+
+    func generateLayout() -> UICollectionViewLayout {
+        // 1
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+//        item.contentInsets = NSDirectionalEdgeInsets(
+//            top: 2,
+//            leading: 2,
+//            bottom: 2,
+//            trailing: 2
+//        )
+        // 2
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.95),
+            heightDimension: .fractionalWidth(1.0)
+        )
+
+        let firstGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitem: item,
+            count: 2
+        )
+
+        let section = NSCollectionLayoutSection(group: firstGroup)
+        section.orthogonalScrollingBehavior = .paging
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+
+    func generateMultipleLayout() -> UICollectionViewLayout {
+        let layout: UICollectionViewCompositionalLayout
+        layout = UICollectionViewCompositionalLayout {
+            (sectionIndex: Int,
+             layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+                let isWideView = layoutEnvironment.container.effectiveContentSize.width > 500
+
+                let sectionLayoutKind = Section.allSections[sectionIndex]
+                switch sectionLayoutKind {
+                case Section(title: "Popular Movies"): return self.generatePopularMoviesLayout(isWide: isWideView)
+                default: return nil
+                }
+        }
+
+        return layout
+    }
+
+    func generateAltLayout() -> UICollectionViewLayout {
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.95))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15)
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .paging
+
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+
+    func generatePopularMoviesLayout(isWide: Bool) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalWidth(2 / 3))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        // Show one item plus peek on narrow screens, two items plus peek on wider screens
+        let groupFractionalWidth = isWide ? 0.475 : 0.95
+        let groupFractionalHeight: Float = isWide ? 1 / 3 : 2 / 3
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
+            heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight))
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: HomeView.sectionHeaderElementKind, alignment: .top
+        )
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .groupPaging
+
+        return section
+    }
 }
 
-extension HomeView: CollectionViewDelegateProtocol {
-    func cellSelected() {
+extension HomeView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
+        return CGSize(width: 200, height: 100)
+    }
+
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, insetForSectionAt _: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: LayoutConstant.spacing, left: LayoutConstant.spacing, bottom: LayoutConstant.spacing, right: LayoutConstant.spacing)
+    }
+
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {
+        return LayoutConstant.spacing
+    }
+
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
+        return LayoutConstant.spacing
+    }
+
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.cellSelected()
+        guard let movie = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
     }
 }
