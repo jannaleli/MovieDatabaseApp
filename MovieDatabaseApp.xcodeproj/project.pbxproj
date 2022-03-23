@@ -36,9 +36,14 @@
 		10C56C4727DAA6C300911437 /* TextFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C4627DAA6C300911437 /* TextFieldType.swift */; };
 		10C56C4927DAA7F000911437 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C4827DAA7F000911437 /* ButtonType.swift */; };
 		10C56C4C27DAB32600911437 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C56C4B27DAB32600911437 /* View.swift */; };
-		10CFD3C727E101690096004B /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CFD3C627E101690096004B /* MovieViewModel.swift */; };
+		10CFD3C727E101690096004B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CFD3C627E101690096004B /* HomeViewModel.swift */; };
 		10CFD3CA27E14E6A0096004B /* Collection View Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CFD3C927E14E6A0096004B /* Collection View Section.swift */; };
+		10E247E927EA189B008D3887 /* AuthPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E247E827EA189B008D3887 /* AuthPublisher.swift */; };
+		10E247EB27EAAA5B008D3887 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E247EA27EAAA5B008D3887 /* UserViewModel.swift */; };
 		10E4570B27D2CA64006507EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E4570A27D2CA64006507EF /* GoogleService-Info.plist */; };
+		10EDDE5327EA004000DA989D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EDDE5227EA004000DA989D /* AuthenticationService.swift */; };
+		10EDDE5827EA023A00DA989D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EDDE5727EA023A00DA989D /* UserModel.swift */; };
+		10EDDE5B27EA033500DA989D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EDDE5A27EA033500DA989D /* LoginViewModel.swift */; };
 		6488768A0BCCD6A376EC7370 /* Pods_MovieDatabaseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E0C2805874CC4543BAF0D3D /* Pods_MovieDatabaseAppTests.framework */; };
 		AB6C744327D507F70089105D /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C744227D507F70089105D /* AutoLayout.swift */; };
 		AB6C744627D522790089105D /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C744527D522790089105D /* StackView.swift */; };
@@ -112,9 +117,14 @@
 		10C56C4627DAA6C300911437 /* TextFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldType.swift; sourceTree = "<group>"; };
 		10C56C4827DAA7F000911437 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		10C56C4B27DAB32600911437 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		10CFD3C627E101690096004B /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		10CFD3C627E101690096004B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		10CFD3C927E14E6A0096004B /* Collection View Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection View Section.swift"; sourceTree = "<group>"; };
+		10E247E827EA189B008D3887 /* AuthPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPublisher.swift; sourceTree = "<group>"; };
+		10E247EA27EAAA5B008D3887 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		10E4570A27D2CA64006507EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		10EDDE5227EA004000DA989D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		10EDDE5727EA023A00DA989D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		10EDDE5A27EA033500DA989D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1E0C2805874CC4543BAF0D3D /* Pods_MovieDatabaseAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F1C277D074B65E84FC276B /* Pods_MovieDatabaseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		626DD555D2A6B8CAA621832F /* Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDatabaseApp_MovieDatabaseAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				ABA7D8AD27D39C8700B39566 /* LoginView.swift */,
+				10EDDE5A27EA033500DA989D /* LoginViewModel.swift */,
 				ABA7D8A327D39C2100B39566 /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -250,6 +261,7 @@
 		1077214D27D2B97B005B63F5 /* MovieDatabaseApp */ = {
 			isa = PBXGroup;
 			children = (
+				10EDDE5127E90A6500DA989D /* Dependencies */,
 				107B5F7727DCD9CD00C069F8 /* Plist */,
 				10C56C3E27DA886900911437 /* App */,
 				10C56C3A27DA859100911437 /* Shared */,
@@ -325,7 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				107B5F8A27DE1A1700C069F8 /* MovieAPI.swift */,
-				10CFD3C627E101690096004B /* MovieViewModel.swift */,
+				10CFD3C627E101690096004B /* HomeViewModel.swift */,
 				107B5F9027DE1C9F00C069F8 /* MovieAPIModel.swift */,
 			);
 			path = Movie;
@@ -361,6 +373,7 @@
 		10C56C3A27DA859100911437 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				10EDDE5427EA019A00DA989D /* Authentication */,
 				107B5F8427DE19D500C069F8 /* Network */,
 				10C56C4527DAA69700911437 /* Constants */,
 				10C56C3F27DA8A9000911437 /* Utilities */,
@@ -425,6 +438,56 @@
 				10CFD3C927E14E6A0096004B /* Collection View Section.swift */,
 			);
 			path = "Collection View Section";
+			sourceTree = "<group>";
+		};
+		10E247E727EA1889008D3887 /* Publisher */ = {
+			isa = PBXGroup;
+			children = (
+				10E247E827EA189B008D3887 /* AuthPublisher.swift */,
+			);
+			path = Publisher;
+			sourceTree = "<group>";
+		};
+		10EDDE5127E90A6500DA989D /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		10EDDE5427EA019A00DA989D /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				10E247E727EA1889008D3887 /* Publisher */,
+				10EDDE5927EA032400DA989D /* View Model */,
+				10EDDE5627EA022700DA989D /* Model */,
+				10EDDE5527EA021400DA989D /* Service */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		10EDDE5527EA021400DA989D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				10EDDE5227EA004000DA989D /* AuthenticationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		10EDDE5627EA022700DA989D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				10EDDE5727EA023A00DA989D /* UserModel.swift */,
+				10E247EA27EAAA5B008D3887 /* UserViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		10EDDE5927EA032400DA989D /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		AB6C744127D507EB0089105D /* Utils */ = {
@@ -780,10 +843,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				10C56C4427DA8DEF00911437 /* RegisterViewModel.swift in Sources */,
+				10EDDE5B27EA033500DA989D /* LoginViewModel.swift in Sources */,
 				107B5F8B27DE1A1700C069F8 /* MovieAPI.swift in Sources */,
 				ABA7D8B027D39C9300B39566 /* RegisterView.swift in Sources */,
 				AB6C744627D522790089105D /* StackView.swift in Sources */,
-				10CFD3C727E101690096004B /* MovieViewModel.swift in Sources */,
+				10CFD3C727E101690096004B /* HomeViewModel.swift in Sources */,
 				1077215327D2B97B005B63F5 /* ViewController.swift in Sources */,
 				ABA958FB27D3F9FD00E8A45D /* TableDelegate.swift in Sources */,
 				ABA7D8B427D3A3FB00B39566 /* AppCoordinator.swift in Sources */,
@@ -792,7 +856,9 @@
 				ABA7D8AC27D39C7C00B39566 /* HomeView.swift in Sources */,
 				10C56C4227DA8ABF00911437 /* AppDependencyContainer.swift in Sources */,
 				10C56C4927DAA7F000911437 /* ButtonType.swift in Sources */,
+				10EDDE5327EA004000DA989D /* AuthenticationService.swift in Sources */,
 				10C56C3327D93D9700911437 /* MovieCell.swift in Sources */,
+				10E247E927EA189B008D3887 /* AuthPublisher.swift in Sources */,
 				ABA958FD27D3FD3000E8A45D /* Table.swift in Sources */,
 				ABA7D8AA27D39C7300B39566 /* SplashView.swift in Sources */,
 				1077214F27D2B97B005B63F5 /* AppDelegate.swift in Sources */,
@@ -809,11 +875,13 @@
 				10C56C3627DA2B2400911437 /* DetailView.swift in Sources */,
 				AB6C744327D507F70089105D /* AutoLayout.swift in Sources */,
 				107B5F8827DE19F400C069F8 /* RestResponse.swift in Sources */,
+				10E247EB27EAAA5B008D3887 /* UserViewModel.swift in Sources */,
 				ABA7D8A827D39C6A00B39566 /* SplashViewController.swift in Sources */,
 				10C56C3D27DA861100911437 /* FirebaseServices.swift in Sources */,
 				10CFD3CA27E14E6A0096004B /* Collection View Section.swift in Sources */,
 				ABA7D8AE27D39C8700B39566 /* LoginView.swift in Sources */,
 				107B5F8627DE19E700C069F8 /* RestClient.swift in Sources */,
+				10EDDE5827EA023A00DA989D /* UserModel.swift in Sources */,
 				ABA7D8A227D39BF900B39566 /* HomeViewController.swift in Sources */,
 				107B5F9327DF883F00C069F8 /* MovieItemCellViewModel.swift in Sources */,
 				101FBF7627D7B3B200E44450 /* AuthCoordinator.swift in Sources */,

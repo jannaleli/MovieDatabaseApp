@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 // TODO: HomeViewModel rename
-class MovieViewModel: ObservableObject {
+class HomeViewModel: ObservableObject {
     @Published var movies = [MovieItemCellViewModel]()
     @Published var upcomingMovies = [MovieItemCellViewModel]()
     @Published var moviesListLoadingError: String = ""

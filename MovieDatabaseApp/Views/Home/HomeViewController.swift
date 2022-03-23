@@ -21,15 +21,14 @@ class HomeViewController: UIViewController {
     weak var delegate: HomeViewControllerDelegate?
     var homeView = HomeView()
     var data = [MovieItem]()
-    var sampleData: [HomeViewModel] = []
-    var movieViewModel: MovieViewModel
+    var homeViewModel: HomeViewModel
 
     private var cancellableSet: Set<AnyCancellable> = .init()
 
     // MARK: Initializers
 
-    init(movieViewModel: MovieViewModel) {
-        self.movieViewModel = movieViewModel
+    init(homeViewModel: HomeViewModel) {
+        self.homeViewModel = homeViewModel
 
         super.init(nibName: nil, bundle: nil)
         setupBindings()
@@ -43,8 +42,8 @@ class HomeViewController: UIViewController {
     // MARK: - Override
 
     override func viewDidLoad() {
-        movieViewModel.getMovieList()
-        movieViewModel.getUpcomingMovies()
+        homeViewModel.getMovieList()
+        homeViewModel.getUpcomingMovies()
     }
 
     override func loadView() {
@@ -81,8 +80,8 @@ class HomeViewController: UIViewController {
 
         Publishers
             .CombineLatest(
-                movieViewModel.$upcomingMovies,
-                movieViewModel.$movies
+                homeViewModel.$upcomingMovies,
+                homeViewModel.$movies
             )
             .receive(on: DispatchQueue.main)
             .sink { [weak self] upcomingMovies, movieList in

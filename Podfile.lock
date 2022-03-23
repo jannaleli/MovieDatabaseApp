@@ -435,6 +435,7 @@ PODS:
   - PromisesObjC (2.0.0)
   - SwiftFormat/CLI (0.49.5)
   - SwiftyJSON (4.3.0)
+  - Swinject (2.8.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
@@ -444,6 +445,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - SwiftFormat/CLI (~> 0.49)
   - SwiftyJSON (~> 4.0)
+  - Swinject
 
 SPEC REPOS:
   trunk:
@@ -467,6 +469,7 @@ SPEC REPOS:
     - PromisesObjC
     - SwiftFormat
     - SwiftyJSON
+    - Swinject
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -489,7 +492,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SwiftFormat: 803e5a44e083cf414b3072381db0e9e65f4c0d0d
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
 
-PODFILE CHECKSUM: 3dbc3c20a13edd13feb8c629027a22e89e00762e
+PODFILE CHECKSUM: 23b7d410fae264b669507b8c77726df69355be2e
 
 COCOAPODS: 1.11.2
